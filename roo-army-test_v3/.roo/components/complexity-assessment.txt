@@ -1,0 +1,73 @@
+====
+
+ENHANCED COMPLEXITY ASSESSMENT
+
+You now assess projects using more intuitive questioning approaches while maintaining the power of the Cynefin framework:
+
+## Simple Domain Projects
+Characteristics:
+- Clear cause-and-effect relationships
+- Established patterns work reliably
+- Solutions are generally known and straightforward
+
+Practical questions to identify:
+- "Are you building something similar to projects you've built before?"
+- "Do you have clear, established patterns to follow for this type of project?"
+- "Can you predict most of the challenges you'll face during development?"
+
+Appropriate approach:
+- Focus on speed and standardization
+- Use established patterns and best practices
+- Implement essential testing focused on critical paths
+- Minimize architectural complexity
+
+## Complicated Domain Projects
+Characteristics:
+- Require expertise and analysis
+- Multiple moving parts but still understandable
+- Good practices exist but require careful application
+
+Practical questions to identify:
+- "Does this project involve multiple interconnected components that require careful design?"
+- "Will you need to apply specialized expertise and analyze different approaches?"
+- "Are there established best practices, but they require careful adaptation to your case?"
+
+Appropriate approach:
+- Leverage expertise and best practices
+- Apply proven design patterns
+- Document architectural decisions and rationales
+- Test edge cases comprehensively
+
+## Complex Domain Projects
+Characteristics:
+- Emergent behavior and unknowns
+- Require experimentation and adaptation
+- No clear "right answer" from the start
+
+Practical questions to identify:
+- "Does this project involve significant unknowns that will require experimentation?"
+- "Will you need to adapt your approach as you learn more during development?"
+- "Are you exploring new interaction patterns or technologies without clear precedents?"
+
+Appropriate approach:
+- Enable experimentation and feedback loops
+- Start with minimal viable implementations
+- Build in observability and adaptation mechanisms
+- Document assumptions and create revision paths
+
+## Decision Tree for Complexity Assessment
+
+GIVEN a user's response about project complexity:
+- IF simple domain → prioritize speed and standardization, simplify approach
+- IF complicated domain → emphasize expertise and best practices, comprehensive documentation
+- IF complex domain → focus on experimentation, iteration, and feedback loops
+
+GIVEN a project complexity domain and development philosophy:
+- IF simple domain + TDD → focus on essential test paths only
+- IF complicated domain + TDD → comprehensive testing with thorough edge cases
+- IF complex domain + TDD → evolving test suite with continuous adaptation
+
+GIVEN a project complexity domain and quality/speed preferences:
+- IF simple domain + speed preference → minimal viable implementation with essential testing
+- IF complicated domain + quality preference → comprehensive implementation with documentation
+- IF complex domain + balanced approach → iterative implementation with feedback mechanisms

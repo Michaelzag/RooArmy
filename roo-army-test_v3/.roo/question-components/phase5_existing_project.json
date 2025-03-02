@@ -1,0 +1,70 @@
+{
+  "title": "Existing Project Analysis",
+  "description": "Analyze existing project structure and conventions",
+  "transition_message": "Let's analyze your existing project structure and patterns.",
+  "condition": "existing_project == 'existing'",
+  "questions": [
+    {
+      "id": "existing_conventions",
+      "question": "What aspects of your existing project would you like to preserve?",
+      "type": "multiple_select",
+      "options": [
+        {"value": "code_style", "label": "Code style and formatting"},
+        {"value": "architecture", "label": "Architectural patterns"},
+        {"value": "testing", "label": "Testing approach"},
+        {"value": "documentation", "label": "Documentation style"},
+        {"value": "all", "label": "All existing conventions"},
+        {"value": "none", "label": "None - I'm open to changes"}
+      ],
+      "impacts": {
+        "code_style": {
+          "preserve_conventions": true,
+          "customInstructions": "Preserve existing code style and formatting conventions."
+        },
+        "architecture": {
+          "preserve_architecture": true,
+          "customInstructions": "Respect existing architectural patterns and structures."
+        },
+        "testing": {
+          "preserve_testing": true,
+          "customInstructions": "Maintain consistency with existing testing approaches."
+        },
+        "documentation": {
+          "preserve_docs": true,
+          "customInstructions": "Follow established documentation formats and styles."
+        },
+        "all": {
+          "preserve_all": true,
+          "customInstructions": "Strictly adhere to all established project conventions."
+        },
+        "none": {
+          "suggest_improvements": true,
+          "customInstructions": "Suggest improvements to existing conventions when appropriate."
+        }
+      }
+    },
+    {
+      "id": "improvement_areas",
+      "question": "Which areas of your existing project would you like to improve? (select all that apply)",
+      "type": "multiple_select",
+      "options": [
+        {"value": "code_quality", "label": "Code quality and organization"},
+        {"value": "test_coverage", "label": "Test coverage"},
+        {"value": "documentation", "label": "Documentation"},
+        {"value": "architecture", "label": "Architecture and design"},
+        {"value": "performance", "label": "Performance"},
+        {"value": "security", "label": "Security"},
+        {"value": "none", "label": "None - I'm satisfied with all aspects"}
+      ],
+      "mode_impacts": {
+        "code_quality": ["engineer+3", "architect+1"],
+        "test_coverage": ["qa+3"],
+        "documentation": ["writer+3"],
+        "architecture": ["architect+3"],
+        "performance": ["perf+3"],
+        "security": ["security+3"],
+        "none": []
+      }
+    }
+  ]
+}

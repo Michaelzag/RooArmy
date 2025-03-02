@@ -1,0 +1,1320 @@
+{
+  "assessment": {
+    "phase1_technology": {
+      "title": "Primary Technology Identification",
+      "description": "Identify the foundational technology stack",
+      "dynamic_options": {
+        "languages": "custom-modes-pool/reference-docs/languages/*/",
+        "frameworks": "custom-modes-pool/reference-docs/languages/{primary_language}/*/",
+        "framework_versions": "custom-modes-pool/reference-docs/languages/{primary_language}/{framework_type}/{framework}/*-v*.md"
+      },
+      "questions": [
+        {
+          "id": "existing_project",
+          "question": "Are you configuring for an existing project or a new project?",
+          "type": "multiple_choice",
+          "options": [
+            {
+              "value": "existing",
+              "label": "Existing project (already has code)"
+            },
+            {
+              "value": "new",
+              "label": "New project (starting from scratch)"
+            }
+          ],
+          "follow_ups": {
+            "existing": [
+              "project_scan_permission"
+            ],
+            "new": [
+              "primary_language"
+            ]
+          }
+        },
+        {
+          "id": "project_scan_permission",
+          "question": "Would you like me to scan your project to detect technologies and patterns?",
+          "type": "multiple_choice",
+          "options": [
+            {
+              "value": "yes",
+              "label": "Yes, analyze my project structure and files"
+            },
+            {
+              "value": "no",
+              "label": "No, I'll provide information manually"
+            }
+          ],
+          "follow_ups": {
+            "yes": [
+              "project_scan_path"
+            ],
+            "no": [
+              "primary_language"
+            ]
+          }
+        },
+        {
+          "id": "project_scan_path",
+          "question": "What's the path to your project's root directory?",
+          "type": "text",
+          "placeholder": "e.g., . (current directory) or ./my-project",
+          "follow_ups": [
+            "scan_confirmation"
+          ]
+        },
+        {
+          "id": "scan_confirmation",
+          "question": "I've analyzed your project and detected these technologies. Is this correct?",
+          "type": "dynamic",
+          "dynamic_value": "scan_results",
+          "options": [
+            {
+              "value": "yes",
+              "label": "Yes, that's correct"
+            },
+            {
+              "value": "partial",
+              "label": "Partially correct (I'll provide additional details)"
+            },
+            {
+              "value": "no",
+              "label": "No, I need to specify manually"
+            }
+          ],
+          "follow_ups": {
+            "yes": [
+              "project_type"
+            ],
+            "partial": [
+              "primary_language"
+            ],
+            "no": [
+              "primary_language"
+            ]
+          }
+        },
+        {
+          "id": "primary_language",
+          "question": "What is the primary programming language for your project?",
+          "type": "dynamic_select",
+          "source": "languages",
+          "options_template": [
+            {
+              "value": "{language_id}",
+              "label": "{language_name}"
+            }
+          ],
+          "fallback_options": [
+            {
+              "value": "javascript",
+              "label": "JavaScript/TypeScript"
+            },
+            {
+              "value": "python",
+              "label": "Python"
+            },
+            {
+              "value": "java",
+              "label": "Java"
+            },
+            {
+              "value": "csharp",
+              "label": "C#"
+            },
+            {
+              "value": "go",
+              "label": "Go"
+            },
+            {
+              "value": "ruby",
+              "label": "Ruby"
+            },
+            {
+              "value": "php",
+              "label": "PHP"
+            },
+            {
+              "value": "rust",
+              "label": "Rust"
+            },
+            {
+              "value": "other",
+              "label": "Other"
+            }
+          ],
+          "follow_ups": {
+            "*": [
+              "project_type",
+              "{language_id}_framework"
+            ]
+          }
+        },
+        {
+          "id": "project_type",
+          "question": "What type of project are you working on?",
+          "type": "multiple_choice",
+          "options": [
+            {
+              "value": "web",
+              "label": "Web Application"
+            },
+            {
+              "value": "mobile",
+              "label": "Mobile Application"
+            },
+            {
+              "value": "service",
+              "label": "Backend Service"
+            },
+            {
+              "value": "cli",
+              "label": "Command Line Tool"
+            },
+            {
+              "value": "library",
+              "label": "Library/Framework"
+            },
+            {
+              "value": "enterprise",
+              "label": "Enterprise System"
+            },
+            {
+              "value": "data",
+              "label": "Data Processing/Analysis"
+            },
+            {
+              "value": "ai",
+              "label": "AI/ML Project"
+            }
+          ]
+        },
+        {
+          "id": "{language_id}_framework",
+          "question": "Which {language_name} framework or library are you primarily using?",
+          "type": "dynamic_select",
+          "source": "frameworks",
+          "options_template": [
+            {
+              "value": "{framework_id}",
+              "label": "{framework_name}"
+            }
+          ],
+          "fallback_options": {
+            "javascript": [
+              {
+                "value": "react",
+                "label": "React"
+              },
+              {
+                "value": "angular",
+                "label": "Angular"
+              },
+              {
+                "value": "vue",
+                "label": "Vue.js"
+              },
+              {
+                "value": "next",
+                "label": "Next.js"
+              },
+              {
+                "value": "svelte",
+                "label": "Svelte"
+              },
+              {
+                "value": "express",
+                "label": "Express.js"
+              },
+              {
+                "value": "nodejs",
+                "label": "Node.js (without framework)"
+              },
+              {
+                "value": "vanilla",
+                "label": "Vanilla JS (no framework)"
+              },
+              {
+                "value": "other",
+                "label": "Other"
+              }
+            ],
+            "python": [
+              {
+                "value": "django",
+                "label": "Django"
+              },
+              {
+                "value": "flask",
+                "label": "Flask"
+              },
+              {
+                "value": "fastapi",
+                "label": "FastAPI"
+              },
+              {
+                "value": "other",
+                "label": "Other"
+              }
+            ]
+          },
+          "follow_ups": {
+            "*": [
+              "{framework_id}_version"
+            ]
+          },
+          "reference_doc_base": "languages/{language_id}/{framework_type}/"
+        },
+        {
+          "id": "{framework_id}_version",
+          "question": "Which {framework_name} version are you using?",
+          "type": "dynamic_select",
+          "source": "framework_versions",
+          "options_template": [
+            {
+              "value": "{version}",
+              "label": "{framework_name} {version}"
+            }
+          ],
+          "fallback_options": {
+            "react": [
+              {
+                "value": "19",
+                "label": "React 19.x (Latest)"
+              },
+              {
+                "value": "18",
+                "label": "React 18.x"
+              },
+              {
+                "value": "17",
+                "label": "React 17.x"
+              },
+              {
+                "value": "other",
+                "label": "Other/Custom"
+              }
+            ],
+            "angular": [
+              {
+                "value": "17",
+                "label": "Angular 17.x (Latest)"
+              },
+              {
+                "value": "16",
+                "label": "Angular 16.x"
+              },
+              {
+                "value": "15",
+                "label": "Angular 15.x"
+              },
+              {
+                "value": "other",
+                "label": "Other/Custom"
+              }
+            ]
+          },
+          "reference_doc_path": "languages/{language_id}/{framework_type}/{framework_id}/{framework_id}-v{version}.md"
+        },
+        {
+          "id": "database",
+          "question": "Which database technology are you using?",
+          "type": "dynamic_select",
+          "source": "database_types",
+          "options_template": [
+            {
+              "value": "{database_id}",
+              "label": "{database_name}"
+            }
+          ],
+          "fallback_options": [
+            {
+              "value": "postgresql",
+              "label": "PostgreSQL"
+            },
+            {
+              "value": "mysql",
+              "label": "MySQL"
+            },
+            {
+              "value": "mongodb",
+              "label": "MongoDB"
+            },
+            {
+              "value": "sqlite",
+              "label": "SQLite"
+            },
+            {
+              "value": "redis",
+              "label": "Redis"
+            },
+            {
+              "value": "neo4j",
+              "label": "Neo4j"
+            },
+            {
+              "value": "qdrant",
+              "label": "Qdrant"
+            },
+            {
+              "value": "none",
+              "label": "No database"
+            },
+            {
+              "value": "other",
+              "label": "Other"
+            }
+          ],
+          "reference_doc_base": "databases/"
+        }
+      ]
+    },
+    "phase2_project_complexity": {
+      "title": "Project Complexity & Philosophy",
+      "description": "Understand your project's complexity and development philosophy",
+      "transition_message": "Now that we understand your technology stack, let's explore your project's complexity and development philosophy.",
+      "questions": [
+        {
+          "id": "project_pattern_familiarity",
+          "question": "Which of these best describes your project?",
+          "type": "multiple_choice",
+          "options": [
+            {
+              "value": "familiar",
+              "label": "Following established patterns similar to projects I've built before"
+            },
+            {
+              "value": "mixed",
+              "label": "Using known patterns but with some new/unique elements"
+            },
+            {
+              "value": "new",
+              "label": "Exploring new territory with significant unknowns"
+            }
+          ],
+          "complexity_mapping": {
+            "familiar": "simple",
+            "mixed": "complicated",
+            "new": "complex"
+          }
+        },
+        {
+          "id": "solution_clarity",
+          "question": "How clear is the solution path for this project?",
+          "type": "multiple_choice",
+          "options": [
+            {
+              "value": "clear",
+              "label": "Very clear - I know exactly how to build it"
+            },
+            {
+              "value": "mostly_clear",
+              "label": "Mostly clear - I'll need to figure out some parts"
+            },
+            {
+              "value": "evolving",
+              "label": "Evolving - The solution will emerge as we progress"
+            }
+          ],
+          "complexity_mapping": {
+            "clear": "simple",
+            "mostly_clear": "complicated",
+            "evolving": "complex"
+          }
+        },
+        {
+          "id": "iteration_expectation",
+          "question": "How much iteration do you expect during development?",
+          "type": "multiple_choice",
+          "options": [
+            {
+              "value": "minimal",
+              "label": "Minimal - I expect to get it right the first time"
+            },
+            {
+              "value": "moderate",
+              "label": "Moderate - Some refinement will be needed"
+            },
+            {
+              "value": "significant",
+              "label": "Significant - Continuous adaptation will be necessary"
+            }
+          ],
+          "complexity_mapping": {
+            "minimal": "simple",
+            "moderate": "complicated",
+            "significant": "complex"
+          }
+        },
+        {
+          "id": "project_complexity",
+          "type": "derived",
+          "derived_from": [
+            "project_pattern_familiarity",
+            "solution_clarity",
+            "iteration_expectation"
+          ],
+          "mapping_logic": "majority_vote",
+          "impacts": {
+            "simple": {
+              "priorities": [
+                "speed",
+                "standardization"
+              ],
+              "remove_modes": [
+                "architect",
+                "experimental"
+              ],
+              "customInstructions": "Focus on rapid implementation using established patterns. Favor straightforward approaches over clever solutions. Include essential tests focused on critical paths."
+            },
+            "complicated": {
+              "priorities": [
+                "expertise",
+                "best_practices"
+              ],
+              "add_modes": [
+                "architect"
+              ],
+              "customInstructions": "Apply proven design patterns appropriate for this domain. Ensure comprehensive testing of edge cases. Document architectural decisions and their rationales."
+            },
+            "complex": {
+              "priorities": [
+                "experimentation",
+                "feedback_loops"
+              ],
+              "add_modes": [
+                "experimental",
+                "architect"
+              ],
+              "customInstructions": "Implement iterative solutions that can evolve. Start with minimal viable implementations. Build in feedback mechanisms and observability. Document assumptions and create easy paths for revision."
+            }
+          }
+        },
+        {
+          "id": "development_philosophy",
+          "question": "Which development approaches resonate with your preferred development style?",
+          "description": "Select all that apply to your development approach.",
+          "type": "multiple_select",
+          "options": [
+            {
+              "value": "tdd",
+              "label": "Test-Driven Development - Tests first, then code"
+            },
+            {
+              "value": "bdd",
+              "label": "Behavior-Driven Development - Define behavior scenarios first"
+            },
+            {
+              "value": "ddd",
+              "label": "Domain-Driven Design - Business domains guide architecture"
+            },
+            {
+              "value": "doc_first",
+              "label": "Documentation-First - Clear specs before implementation"
+            },
+            {
+              "value": "component",
+              "label": "Component-Based - Building from reusable parts"
+            },
+            {
+              "value": "feature",
+              "label": "Feature-Focused - Organizing around user features"
+            },
+            {
+              "value": "none",
+              "label": "No specific philosophy - Pragmatic approach"
+            }
+          ],
+          "mode_impacts": {
+            "tdd": [
+              "qa+3",
+              "engineer+1"
+            ],
+            "bdd": [
+              "qa+2",
+              "architect+1"
+            ],
+            "ddd": [
+              "architect+3",
+              "dba+1"
+            ],
+            "doc_first": [
+              "writer+3",
+              "architect+1"
+            ],
+            "component": [
+              "frontend+2",
+              "engineer+1"
+            ],
+            "feature": [
+              "engineer+2",
+              "architect+1"
+            ]
+          }
+        },
+        {
+          "id": "quality_priority",
+          "question": "On a scale from 1-5, where would you position your project priorities?",
+          "type": "scale",
+          "label": "Development Speed vs. Code Quality",
+          "min_label": "1: Heavily favor speed (get it working now)",
+          "max_label": "5: Heavily favor quality (comprehensive testing)",
+          "default": 3,
+          "impacts": {
+            "1": {
+              "add_modes": [
+                "engineer"
+              ],
+              "remove_modes": [
+                "qa",
+                "security",
+                "writer"
+              ],
+              "customInstructions": "Prioritize working solutions over perfect code. Focus on core functionality first. Use simple, direct approaches for non-critical paths."
+            },
+            "2": {
+              "add_modes": [
+                "engineer"
+              ],
+              "remove_modes": [
+                "qa",
+                "writer"
+              ]
+            },
+            "3": {
+              "balanced": true
+            },
+            "4": {
+              "add_modes": [
+                "qa",
+                "writer"
+              ],
+              "customInstructions": "Prioritize code quality and maintainability. Implement comprehensive test coverage for critical features."
+            },
+            "5": {
+              "add_modes": [
+                "qa",
+                "security",
+                "writer"
+              ],
+              "remove_modes": [
+                "experimental"
+              ],
+              "customInstructions": "Prioritize maintainable, well-tested code. Implement comprehensive test coverage. Follow established patterns and thoroughly test all code paths."
+            }
+          }
+        },
+        {
+          "id": "handoff_interest",
+          "question": "For projects that span multiple sessions, our handoff system helps maintain context and document progress. Would this be useful for your project?",
+          "type": "multiple_choice",
+          "options": [
+            {
+              "value": "yes",
+              "label": "Yes, the handoff system would be helpful"
+            },
+            {
+              "value": "no",
+              "label": "No, I don't need the handoff system"
+            }
+          ],
+          "impacts": {
+            "yes": {
+              "add_modes": [
+                "handoff-manager",
+                "milestone-manager",
+                "session-restorer"
+              ]
+            },
+            "no": {
+              "remove_modes": [
+                "handoff-manager",
+                "milestone-manager",
+                "session-restorer"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "phase3_development_experience": {
+      "title": "Development Experience",
+      "description": "Understand your experience level and development priorities",
+      "transition_message": "Let's discuss your experience level with this technology stack.",
+      "questions": [
+        {
+          "id": "experience_level",
+          "question": "What is your experience level with this technology stack?",
+          "type": "multiple_choice",
+          "options": [
+            {
+              "value": "beginner",
+              "label": "Beginner (learning the basics)"
+            },
+            {
+              "value": "intermediate",
+              "label": "Intermediate (some experience)"
+            },
+            {
+              "value": "advanced",
+              "label": "Advanced (experienced developer)"
+            }
+          ],
+          "impacts": {
+            "beginner": {
+              "add_modes": [
+                "learn"
+              ],
+              "remove_modes": [
+                "architect",
+                "security",
+                "perf",
+                "cloud"
+              ],
+              "customInstructions": "Include learning-oriented documentation and explanations. Focus on fundamental concepts and patterns. Provide clear, step-by-step guidance."
+            },
+            "intermediate": {
+              "add_modes": [],
+              "remove_modes": [],
+              "customInstructions": "Balance explanations with implementation efficiency. Include references to best practices and patterns when appropriate."
+            },
+            "advanced": {
+              "add_modes": [
+                "perf",
+                "security"
+              ],
+              "remove_modes": [
+                "learn"
+              ],
+              "customInstructions": "Focus on efficient implementation with minimal explanation of well-known concepts. Include advanced patterns and optimizations when appropriate."
+            }
+          }
+        },
+        {
+          "id": "developer_focus",
+          "question": "Which aspects of development do you handle? (select all that apply)",
+          "type": "multiple_select",
+          "options": [
+            {
+              "value": "frontend",
+              "label": "Frontend Development"
+            },
+            {
+              "value": "backend",
+              "label": "Backend Development"
+            },
+            {
+              "value": "fullstack",
+              "label": "Full-stack Development"
+            },
+            {
+              "value": "design",
+              "label": "UI/UX Design"
+            },
+            {
+              "value": "devops",
+              "label": "DevOps & Deployment"
+            },
+            {
+              "value": "testing",
+              "label": "Testing & Quality Assurance"
+            },
+            {
+              "value": "data",
+              "label": "Data Engineering/Analytics"
+            }
+          ],
+          "mode_impacts": {
+            "frontend": [
+              "frontend+2"
+            ],
+            "backend": [
+              "backend+2"
+            ],
+            "fullstack": [
+              "engineer+2"
+            ],
+            "design": [
+              "ui+2"
+            ],
+            "devops": [
+              "devops+2"
+            ],
+            "testing": [
+              "qa+2"
+            ],
+            "data": [
+              "dba+2",
+              "analyst+2"
+            ]
+          }
+        }
+      ]
+    },
+    "phase4_development_focus": {
+      "title": "Development Priorities",
+      "description": "Understand specific development needs and priorities",
+      "transition_message": "Let's discuss your specific development priorities.",
+      "questions": [
+        {
+          "id": "development_focus",
+          "question": "What are your primary development focuses? (select all that apply)",
+          "type": "multiple_select",
+          "options": [
+            {
+              "value": "features",
+              "label": "Implementing new features"
+            },
+            {
+              "value": "bugs",
+              "label": "Fixing bugs"
+            },
+            {
+              "value": "refactoring",
+              "label": "Code refactoring/improvement"
+            },
+            {
+              "value": "performance",
+              "label": "Performance optimization"
+            },
+            {
+              "value": "security",
+              "label": "Security improvements"
+            },
+            {
+              "value": "accessibility",
+              "label": "Accessibility enhancements"
+            }
+          ],
+          "mode_impacts": {
+            "features": [
+              "engineer+3",
+              "architect+1"
+            ],
+            "bugs": [
+              "qa+3",
+              "engineer+2"
+            ],
+            "refactoring": [
+              "engineer+3",
+              "architect+2"
+            ],
+            "performance": [
+              "perf+3",
+              "engineer+1"
+            ],
+            "security": [
+              "security+3"
+            ],
+            "accessibility": [
+              "ui+3",
+              "frontend+1"
+            ]
+          }
+        },
+        {
+          "id": "specialized_needs",
+          "question": "Do you have any specialized needs? (select all that apply)",
+          "type": "multiple_select",
+          "options": [
+            {
+              "value": "framework_specific",
+              "label": "Framework-Specific Testing/Development"
+            },
+            {
+              "value": "natural_language",
+              "label": "Natural Language Programming (intent-driven)"
+            },
+            {
+              "value": "user_stories",
+              "label": "User Story Creation and Management"
+            },
+            {
+              "value": "code_review",
+              "label": "Specialized Code Review"
+            },
+            {
+              "value": "cicd",
+              "label": "CI/CD and Deployment Automation"
+            },
+            {
+              "value": "docs",
+              "label": "Documentation Generation"
+            },
+            {
+              "value": "analytics",
+              "label": "Data Analytics Integration"
+            },
+            {
+              "value": "monitoring",
+              "label": "Monitoring and Logging"
+            },
+            {
+              "value": "compliance",
+              "label": "Regulatory Compliance"
+            },
+            {
+              "value": "none",
+              "label": "None of the above"
+            }
+          ],
+          "mode_impacts": {
+            "framework_specific": [
+              "framework-tester+3"
+            ],
+            "natural_language": [
+              "vibemode+3"
+            ],
+            "user_stories": [
+              "user-story+3"
+            ],
+            "code_review": [
+              "reviewer+3"
+            ],
+            "cicd": [
+              "devops+3"
+            ],
+            "docs": [
+              "writer+3",
+              "architect+1"
+            ],
+            "analytics": [
+              "dba+2",
+              "analyst+3"
+            ],
+            "monitoring": [
+              "sre+3",
+              "devops+2"
+            ],
+            "compliance": [
+              "security+3",
+              "writer+1"
+            ],
+            "none": []
+          }
+        },
+        {
+          "id": "learning_needs",
+          "question": "Do you need learning support for specific technologies?",
+          "type": "multiple_choice",
+          "options": [
+            {
+              "value": "yes",
+              "label": "Yes, I have learning needs"
+            },
+            {
+              "value": "no",
+              "label": "No, I'm comfortable with all technologies"
+            }
+          ],
+          "follow_ups": {
+            "yes": [
+              "learning_areas"
+            ],
+            "no": []
+          }
+        },
+        {
+          "id": "learning_areas",
+          "question": "Which areas do you need learning support for? (select all that apply)",
+          "type": "multiple_select",
+          "options": [
+            {
+              "value": "framework",
+              "label": "Framework/Library"
+            },
+            {
+              "value": "language",
+              "label": "Programming Language"
+            },
+            {
+              "value": "architecture",
+              "label": "Architecture Patterns"
+            },
+            {
+              "value": "testing",
+              "label": "Testing Best Practices"
+            },
+            {
+              "value": "devops",
+              "label": "DevOps and Deployment"
+            },
+            {
+              "value": "security",
+              "label": "Security Practices"
+            }
+          ],
+          "mode_impacts": {
+            "framework": [
+              "learn+3"
+            ],
+            "language": [
+              "learn+3"
+            ],
+            "architecture": [
+              "architect+2",
+              "learn+2"
+            ],
+            "testing": [
+              "qa+2",
+              "learn+2"
+            ],
+            "devops": [
+              "devops+2",
+              "learn+2"
+            ],
+            "security": [
+              "security+2",
+              "learn+2"
+            ]
+          }
+        }
+      ]
+    },
+    "phase5_existing_project": {
+      "title": "Existing Project Analysis",
+      "description": "Analyze existing project structure and conventions",
+      "transition_message": "Let's analyze your existing project structure and patterns.",
+      "condition": "existing_project == 'existing'",
+      "questions": [
+        {
+          "id": "existing_conventions",
+          "question": "What aspects of your existing project would you like to preserve?",
+          "type": "multiple_select",
+          "options": [
+            {
+              "value": "code_style",
+              "label": "Code style and formatting"
+            },
+            {
+              "value": "architecture",
+              "label": "Architectural patterns"
+            },
+            {
+              "value": "testing",
+              "label": "Testing approach"
+            },
+            {
+              "value": "documentation",
+              "label": "Documentation style"
+            },
+            {
+              "value": "all",
+              "label": "All existing conventions"
+            },
+            {
+              "value": "none",
+              "label": "None - I'm open to changes"
+            }
+          ],
+          "impacts": {
+            "code_style": {
+              "preserve_conventions": true,
+              "customInstructions": "Preserve existing code style and formatting conventions."
+            },
+            "architecture": {
+              "preserve_architecture": true,
+              "customInstructions": "Respect existing architectural patterns and structures."
+            },
+            "testing": {
+              "preserve_testing": true,
+              "customInstructions": "Maintain consistency with existing testing approaches."
+            },
+            "documentation": {
+              "preserve_docs": true,
+              "customInstructions": "Follow established documentation formats and styles."
+            },
+            "all": {
+              "preserve_all": true,
+              "customInstructions": "Strictly adhere to all established project conventions."
+            },
+            "none": {
+              "suggest_improvements": true,
+              "customInstructions": "Suggest improvements to existing conventions when appropriate."
+            }
+          }
+        },
+        {
+          "id": "improvement_areas",
+          "question": "Which areas of your existing project would you like to improve? (select all that apply)",
+          "type": "multiple_select",
+          "options": [
+            {
+              "value": "code_quality",
+              "label": "Code quality and organization"
+            },
+            {
+              "value": "test_coverage",
+              "label": "Test coverage"
+            },
+            {
+              "value": "documentation",
+              "label": "Documentation"
+            },
+            {
+              "value": "architecture",
+              "label": "Architecture and design"
+            },
+            {
+              "value": "performance",
+              "label": "Performance"
+            },
+            {
+              "value": "security",
+              "label": "Security"
+            },
+            {
+              "value": "none",
+              "label": "None - I'm satisfied with all aspects"
+            }
+          ],
+          "mode_impacts": {
+            "code_quality": [
+              "engineer+3",
+              "architect+1"
+            ],
+            "test_coverage": [
+              "qa+3"
+            ],
+            "documentation": [
+              "writer+3"
+            ],
+            "architecture": [
+              "architect+3"
+            ],
+            "performance": [
+              "perf+3"
+            ],
+            "security": [
+              "security+3"
+            ],
+            "none": []
+          }
+        }
+      ]
+    },
+    "phase6_mode_customization": {
+      "title": "Mode Customization",
+      "description": "Customize selected modes for your project",
+      "transition_message": "Based on your responses, I've recommended these custom modes for your project. Let's review and customize them.",
+      "questions": [
+        {
+          "id": "customize_modes",
+          "question": "Would you like to customize any of the recommended modes?",
+          "type": "multiple_choice",
+          "options": [
+            {
+              "value": "yes",
+              "label": "Yes, I'd like to customize the modes"
+            },
+            {
+              "value": "no",
+              "label": "No, the recommended modes look good"
+            }
+          ],
+          "follow_ups": {
+            "yes": [
+              "modes_to_customize"
+            ],
+            "no": []
+          }
+        },
+        {
+          "id": "modes_to_customize",
+          "question": "Which modes would you like to customize?",
+          "type": "dynamic",
+          "dynamic_value": "selected_modes",
+          "multiple": true,
+          "follow_ups": [
+            "customization_type"
+          ]
+        },
+        {
+          "id": "customization_type",
+          "question": "What aspects would you like to customize for {current_mode}?",
+          "type": "multiple_select",
+          "options": [
+            {
+              "value": "role",
+              "label": "Role definition"
+            },
+            {
+              "value": "tools",
+              "label": "Tool permissions"
+            },
+            {
+              "value": "instructions",
+              "label": "Custom instructions"
+            }
+          ],
+          "follow_ups": {
+            "role": [
+              "role_customization"
+            ],
+            "tools": [
+              "tools_customization"
+            ],
+            "instructions": [
+              "instructions_customization"
+            ]
+          }
+        },
+        {
+          "id": "role_customization",
+          "question": "How would you like to modify the role definition for {current_mode}?",
+          "type": "text",
+          "multiline": true,
+          "dynamic_value": "current_role_definition",
+          "placeholder": "Edit the role definition..."
+        },
+        {
+          "id": "tools_customization",
+          "question": "Which tool groups should {current_mode} have access to?",
+          "type": "multiple_select",
+          "options": [
+            {
+              "value": "read",
+              "label": "Read files"
+            },
+            {
+              "value": "edit",
+              "label": "Edit files"
+            },
+            {
+              "value": "command",
+              "label": "Execute commands"
+            },
+            {
+              "value": "browser",
+              "label": "Browser actions"
+            },
+            {
+              "value": "mcp",
+              "label": "MCP tools"
+            }
+          ],
+          "dynamic_value": "current_tools"
+        },
+        {
+          "id": "instructions_customization",
+          "question": "How would you like to modify the custom instructions for {current_mode}?",
+          "type": "text",
+          "multiline": true,
+          "dynamic_value": "current_instructions",
+          "placeholder": "Edit the custom instructions..."
+        },
+        {
+          "id": "review_customization",
+          "question": "Here's the updated configuration for {current_mode}. Does this look correct?",
+          "type": "multiple_choice",
+          "dynamic_value": "customized_config",
+          "options": [
+            {
+              "value": "yes",
+              "label": "Yes, this looks good"
+            },
+            {
+              "value": "no",
+              "label": "No, I'd like to make more changes"
+            }
+          ],
+          "follow_ups": {
+            "yes": [],
+            "no": [
+              "customization_type"
+            ]
+          }
+        }
+      ]
+    },
+    "phase_transitions": {
+      "phase1_to_phase2": {
+        "required_fields": [
+          "primary_language",
+          "project_type"
+        ],
+        "transition_message": "Now that we understand your technology stack, let's explore your project's complexity and development philosophy."
+      },
+      "phase2_to_phase3": {
+        "transition_message": "Let's discuss your experience level and development focus."
+      },
+      "phase3_to_phase4": {
+        "transition_message": "Let's discuss your specific development priorities."
+      },
+      "phase4_to_phase5": {
+        "condition": "existing_project == 'existing'",
+        "transition_message": "Let's analyze your existing project structure and patterns."
+      },
+      "phase4_to_phase6": {
+        "condition": "existing_project != 'existing'",
+        "transition_message": "Based on your responses, I'll now recommend custom modes for your project."
+      },
+      "phase5_to_phase6": {
+        "transition_message": "Based on your responses and project analysis, I'll now recommend custom modes for your project."
+      },
+      "phase6_to_complete": {
+        "transition_message": "Your custom modes have been configured. Would you like to switch to one of these modes to begin implementing your project?"
+      }
+    },
+    "reference_doc_mapping": {
+      "pattern": "languages/{primary_language}/{type}/{framework}/{framework}-v{version}.md",
+      "fallback_strategy": "closest_version",
+      "creation_support": true
+    },
+    "mode_selection_logic": {
+      "threshold": 3,
+      "essential_modes": [
+        "commander",
+        "engineer"
+      ],
+      "base_mode_limit": 7,
+      "handoff_modes": [
+        "handoff-manager",
+        "milestone-manager",
+        "session-restorer"
+      ],
+      "mode_groups": {
+        "planning": [
+          "architect",
+          "ui",
+          "api"
+        ],
+        "implementation": [
+          "engineer",
+          "frontend",
+          "backend",
+          "mobile",
+          "dba"
+        ],
+        "quality": [
+          "qa",
+          "security",
+          "perf"
+        ],
+        "operations": [
+          "devops",
+          "sre",
+          "cloud"
+        ],
+        "documentation": [
+          "writer",
+          "learn",
+          "analyst"
+        ],
+        "handoff": [
+          "handoff-manager",
+          "milestone-manager",
+          "session-restorer"
+        ],
+        "specialized": [
+          "framework-tester",
+          "vibemode",
+          "user-story",
+          "reviewer",
+          "experimental"
+        ]
+      }
+    }
+  }
+}

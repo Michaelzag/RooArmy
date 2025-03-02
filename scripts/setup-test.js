@@ -81,7 +81,7 @@ function assembleSystemPrompt(componentsDir, outputFile) {
   console.log('- Assembling system prompt from components...');
   
   try {
-    // Component files in order (updated for 3.5)
+    // Component files in order (updated for flexible LLM-driven approach)
     const componentFiles = [
       'header.txt',
       'project-analysis.txt',
@@ -92,7 +92,8 @@ function assembleSystemPrompt(componentsDir, outputFile) {
       'wizard-customization.txt',
       'development-philosophy.txt',
       'existing-project.txt',
-      'mode-selection.txt',
+      'dynamic-mode-generation.txt', // Add the new dynamic approach
+      'mode-selection.txt',          // Keep for backward compatibility
       'safety-rules.txt'
     ];
     
@@ -404,11 +405,29 @@ async function setupTest() {
       console.error('- Error assembling questions.json');
     }
     
-    // Copy essential reference files from custom-modes-pool
+    // Copy entire reference-docs directory recursively
+    try {
+      const sourceRefDocsDir = path.join(sourceDir, 'custom-modes-pool', 'reference-docs');
+      const targetRefDocsDir = path.join(testDir, 'custom-modes-pool', 'reference-docs');
+      
+      if (fs.existsSync(sourceRefDocsDir)) {
+        // Ensure the target directory exists
+        ensureDir(targetRefDocsDir);
+        
+        // Use the recursive copyDir function to copy the entire structure
+        copyDir(sourceRefDocsDir, targetRefDocsDir);
+        console.log('- Copied complete reference-docs directory and all contents');
+      } else {
+        console.log(`- Warning: Reference-docs directory not found: ${sourceRefDocsDir}`);
+      }
+    } catch (err) {
+      console.error(`- Error copying reference-docs directory: ${err.message}`);
+    }
+    
+    // Copy other essential files from custom-modes-pool
     const essentialFiles = [
-      ['00-index.json', ''],
-      ['README.md', ''],
-      ['reference-docs/00-schema.md', 'reference-docs/']
+      ['README.md', '']
+      // Note: 00-index.json is deprecated in favor of dynamic mode generation
     ];
     
     essentialFiles.forEach(([file, subdir]) => {
@@ -431,6 +450,36 @@ async function setupTest() {
         console.error(`- Error copying ${file}: ${err.message}`);
       }
     });
+    
+    // Create dummy .rooconfig.md that's explicitly placeholder data
+    try {
+      const dummyConfigContent = `# PLACEHOLDER CONFIGURATION FILE
+      
+## IMPORTANT: THIS IS NOT A REAL PROJECT CONFIGURATION
+
+This file exists solely to prevent error messages during setup.
+It contains NO actual project data and should NOT be used for
+technology detection or project analysis.
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*                                                         *
+*  DO NOT USE THIS FILE FOR TECHNOLOGY DETECTION          *
+*  DO NOT INFER ANY PROJECT DETAILS FROM THIS FILE        *
+*  THIS FILE WILL BE REPLACED DURING ACTUAL CONFIGURATION *
+*                                                         *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+## Placeholder Only
+Created: ${new Date().toISOString().split('T')[0]}
+Purpose: Prevent configuration-related errors during testing
+Action: This file should be ignored during project analysis`;
+      
+      const configFile = path.join(testDir, '.rooconfig.md');
+      fs.writeFileSync(configFile, dummyConfigContent);
+      console.log('- Created placeholder .rooconfig.md file');
+    } catch (err) {
+      console.error(`- Error creating placeholder .rooconfig.md: ${err.message}`);
+    }
 
     console.log('\nRooCommander test environment setup complete!');
     console.log(`Test environment path: ${testDir}`);
