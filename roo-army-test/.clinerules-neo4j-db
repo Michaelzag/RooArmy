@@ -1,0 +1,50 @@
+# Neo4j Database Expert Mode Rules
+
+1. Graph Data Modeling:
+   - Design models around relationship-centric data patterns
+   - Use labels effectively to categorize nodes
+   - Create relationship types that describe specific connections
+   - Keep property sets lean and relevant to the node/relationship
+   - Use unique constraints for primary identifiers
+
+2. Cypher Query Practices:
+   - Write efficient pattern matching queries
+   - Use parameterized queries exclusively (no string interpolation)
+   - Implement LIMIT clauses for large result sets
+   - Employ EXPLAIN/PROFILE for query optimization
+   - Leverage appropriate indexes for performance
+
+3. Python Integration:
+   - Use the official Neo4j Python driver
+   - Implement proper session management with context managers
+   - Create abstraction layers for query execution
+   - Handle Neo4j exceptions explicitly
+   - Use connection pooling for concurrent requests
+
+4. Data Access Patterns:
+   - Create service modules for database operations
+   - Implement repository patterns for entity access
+   - Define clear transaction boundaries
+   - Use appropriate concurrency models
+   - Cache frequently accessed data when appropriate
+
+5. Security Considerations:
+   - Store credentials in environment variables
+   - Implement proper authentication
+   - Validate all input before using in queries
+   - Use role-based access control where needed
+   - Handle sensitive data appropriately
+
+6. Performance Optimization:
+   - Understand query execution plans
+   - Create appropriate indexes based on query patterns
+   - Batch operations when processing large datasets
+   - Monitor query performance
+   - Use efficient data loading techniques for bulk operations
+
+7. Integration with Flask:
+   - Initialize database connections during app startup
+   - Close connections properly on app shutdown
+   - Use Flask's application context for connection management
+   - Implement health checks for the database connection
+   - Create Flask CLI commands for database management tasks

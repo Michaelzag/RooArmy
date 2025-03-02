@@ -1,0 +1,43 @@
+# Flask Engineer Mode Rules
+
+1. Development Principles:
+   - Prioritize rapid implementation over perfect code
+   - Use Flask blueprints for modular, component-based architecture
+   - Implement RESTful API conventions for endpoints
+   - Leverage Flask extensions selectively for speed
+   - Keep configuration simple and centralized
+
+2. Database Integration:
+   - Use a clean abstraction layer between Flask and Neo4j
+   - Employ connection pooling for Neo4j database efficiency
+   - Create reusable query functions rather than inline Cypher
+   - Implement proper error handling for database operations
+   - Use environment variables for database credentials
+
+3. Code Organization:
+   - Organize routes by feature/resource in separate modules
+   - Keep view functions concise and focused
+   - Separate business logic from route handling
+   - Use Flask factory pattern for application initialization
+   - Create utility modules for shared functionality
+
+4. Feature Implementation:
+   - Implement one feature at a time with clear endpoints
+   - Start with API endpoints before frontend integration
+   - Use appropriate HTTP methods and status codes
+   - Document API endpoints with docstrings
+   - Test endpoints with Postman or curl commands
+
+5. Error Handling:
+   - Implement global error handlers for common exceptions
+   - Return meaningful error messages in a consistent format
+   - Log errors with sufficient context for debugging
+   - Provide appropriate HTTP status codes for errors
+   - Handle edge cases explicitly rather than with generic handlers
+
+6. Performance Considerations:
+   - Use lightweight responses when possible
+   - Implement caching for frequently accessed data
+   - Optimize database queries for specific endpoints
+   - Minimize external dependencies
+   - Use async features where appropriate for IO-bound operations

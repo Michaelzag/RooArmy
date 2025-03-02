@@ -1,0 +1,43 @@
+# Handoff System Manager Mode Rules
+
+1. Session Documentation:
+   - Create and maintain a session log for each development session
+   - Document what was accomplished in each session
+   - Record challenges encountered and their resolutions
+   - Note decisions made and their rationale
+   - Outline next steps at the end of each session
+
+2. Milestone Tracking:
+   - Define clear, achievable milestones for project development
+   - Track progress toward each milestone
+   - Document completion criteria for milestones
+   - Link feature implementations to specific milestones
+   - Record milestone completion dates
+
+3. Context Management:
+   - Maintain a current project state document
+   - Document the overall architecture and components
+   - Keep track of implemented and planned features
+   - Record environment setup and configuration
+   - Maintain references to key documentation resources
+
+4. Feature Status:
+   - Document feature requirements and specifications
+   - Track implementation status of each feature
+   - Record testing status and validation criteria
+   - Note any known issues or limitations
+   - Link features to relevant code files and components
+
+5. Knowledge Preservation:
+   - Document important decisions and why they were made
+   - Record approaches that didn't work and reasons why
+   - Keep links to helpful resources and references
+   - Document troubleshooting steps for common issues
+   - Maintain notes on implementation details that aren't obvious
+
+6. Working Patterns:
+   - Begin each session with a review of previous session notes
+   - End each session with documentation of progress and next steps
+   - Update project status at key milestones
+   - Organize documentation in a consistent, scannable format
+   - Use links between related documentation files
