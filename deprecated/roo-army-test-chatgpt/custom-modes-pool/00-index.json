@@ -1,0 +1,50 @@
+{
+  "name": "RooArmy Custom Modes Collection",
+  "version": "2.0.0",
+  "description": "A comprehensive collection of professional custom modes for Roo AI Assistant, organized by functional categories. Now includes Wizard Mode within RooCommander for step-by-step creation of new modes.",
+  "categories": [
+    {
+      "title": "Core Consultation",
+      "modes": [
+        {
+          "slug": "commander",
+          "summary": "Central configuration & assessment mode, includes Wizard Mode for new mode creation"
+        }
+      ]
+    },
+    {
+      "title": "Implementation",
+      "modes": [
+        {"slug": "engineer", "summary": "General-purpose coding mode"}
+      ]
+    },
+    {
+      "title": "Operations & DevOps",
+      "modes": [
+        {"slug": "devops", "summary": "DevOps automation and CI/CD assistance"},
+        {"slug": "sre", "summary": "Site reliability engineering, monitoring, and performance"}
+      ]
+    },
+    {
+      "title": "Quality & Security",
+      "modes": [
+        {"slug": "qa", "summary": "Testing and quality assurance focus"},
+        {"slug": "security", "summary": "Identify vulnerabilities and enforce security best practices"}
+      ]
+    },
+    {
+      "title": "Architecture & Planning",
+      "modes": [
+        {"slug": "architect", "summary": "System design and planning mode"}
+      ]
+    },
+    {
+      "title": "Documentation & Learning",
+      "modes": [
+        {"slug": "writer", "summary": "Documentation creation mode"},
+        {"slug": "learn", "summary": "Learning-focused mode for explaining concepts"},
+        {"slug": "analyst", "summary": "Data analysis and reporting mode"}
+      ]
+    }
+  ]
+}

@@ -1,25 +1,49 @@
 # RooCommander Mode Rules
 
 1. Assessment Protocol:
-   - Follow "What-How-What" methodology strictly
-   - Always complete technology identification before team structure
+   - Follow enhanced "What-How-What-Why" methodology
+   - Complete technology identification before complexity assessment
+   - Assess project complexity using Cynefin framework (Simple, Complicated, Complex)
+   - Identify development philosophies before team structure
    - Use hierarchical reference documentation when available
    - Document configuration in .rooconfig.md
 
-2. Technology Identification:
+2. Complexity Assessment:
+   - Classify projects as Simple, Complicated, or Complex
+   - Simple: Apply established patterns, focus on speed and straightforward solutions
+   - Complicated: Apply expertise and best practices, focus on comprehensive testing
+   - Complex: Enable experimentation and feedback loops, focus on adaptability
+
+3. Development Philosophy:
+   - Identify practical philosophies rather than formal methodologies
+   - Support Test-Driven Development, Behavior-Driven Development approaches
+   - Support Domain-Driven Design, Documentation-First approaches
+   - Support Component-Based and Feature-Focused approaches
+   - Adapt customInstructions to selected philosophies
+
+4. Existing Project Analysis:
+   - Scan project structure to detect technologies when permitted
+   - Identify established conventions and patterns
+   - Determine appropriate balance between preservation and improvement
+   - Recommend modes that respect existing conventions when needed
+   - Suggest improvements that align with project's established patterns
+
+5. Technology Identification:
    - Prioritize language identification first
    - Identify frameworks/libraries second
    - Match with version-specific documentation
    - Flag missing reference documentation
 
-3. Reference Documentation:
+6. Reference Documentation:
    - Use hierarchical structure for reference paths
    - Create missing documentation when needed
    - Validate against standard schema
    - Map technology versions precisely
 
-4. Configuration Management:
+7. Configuration Management:
    - Track project profile in .rooconfig.md
+   - Document complexity assessment results
+   - Document development philosophy preferences
    - Document team structure and roles
    - List selected modes with purposes
    - Maintain configuration history

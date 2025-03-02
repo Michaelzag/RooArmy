@@ -1,0 +1,433 @@
+{
+    "assessment": {
+      "phase1_technology": {
+        "title": "Primary Technology Identification",
+        "description": "Identify the foundational technology stack",
+        "questions": [
+          {
+            "id": "primary_language",
+            "question": "What is the primary programming language for your project?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "javascript", "label": "JavaScript/TypeScript"},
+              {"value": "python", "label": "Python"},
+              {"value": "java", "label": "Java"},
+              {"value": "csharp", "label": "C#"},
+              {"value": "go", "label": "Go"},
+              {"value": "ruby", "label": "Ruby"},
+              {"value": "php", "label": "PHP"},
+              {"value": "rust", "label": "Rust"},
+              {"value": "other", "label": "Other"}
+            ],
+            "follow_ups": {
+              "javascript": ["project_type", "javascript_framework"],
+              "python": ["project_type", "python_framework"],
+              "java": ["project_type", "java_framework"],
+              "csharp": ["project_type", "dotnet_framework"],
+              "go": ["project_type", "go_framework"],
+              "ruby": ["project_type", "ruby_framework"],
+              "php": ["project_type", "php_framework"],
+              "rust": ["project_type", "rust_framework"],
+              "other": ["project_type", "language_details"]
+            }
+          },
+          {
+            "id": "project_type",
+            "question": "What type of project are you working on?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "web", "label": "Web Application"},
+              {"value": "mobile", "label": "Mobile Application"},
+              {"value": "service", "label": "Backend Service"},
+              {"value": "cli", "label": "Command Line Tool"},
+              {"value": "library", "label": "Library/Framework"},
+              {"value": "enterprise", "label": "Enterprise System"},
+              {"value": "data", "label": "Data Processing/Analysis"},
+              {"value": "ai", "label": "AI/ML Project"}
+            ]
+          },
+          {
+            "id": "javascript_framework",
+            "question": "Which JavaScript framework or library are you primarily using?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "react", "label": "React"},
+              {"value": "angular", "label": "Angular"},
+              {"value": "vue", "label": "Vue.js"},
+              {"value": "next", "label": "Next.js"},
+              {"value": "svelte", "label": "Svelte"},
+              {"value": "express", "label": "Express.js"},
+              {"value": "nodejs", "label": "Node.js (without framework)"},
+              {"value": "vanilla", "label": "Vanilla JS (no framework)"},
+              {"value": "other", "label": "Other"}
+            ],
+            "follow_ups": {
+              "react": ["react_version"],
+              "angular": ["angular_version"],
+              "vue": ["vue_version"],
+              "next": ["next_version"],
+              "svelte": ["svelte_version"],
+              "express": ["express_version"],
+              "other": ["framework_details"]
+            },
+            "reference_doc_base": "languages/javascript/frontend/"
+          },
+          {
+            "id": "react_version",
+            "question": "Which React version are you using?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "19", "label": "React 19.x (Latest)"},
+              {"value": "18", "label": "React 18.x"},
+              {"value": "17", "label": "React 17.x"},
+              {"value": "other", "label": "Other/Custom"}
+            ],
+            "reference_doc_path": "languages/javascript/frontend/react/react-v{value}.md"
+          },
+          {
+            "id": "angular_version",
+            "question": "Which Angular version are you using?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "17", "label": "Angular 17.x (Latest)"},
+              {"value": "16", "label": "Angular 16.x"},
+              {"value": "other", "label": "Other/Custom"}
+            ],
+            "reference_doc_path": "languages/javascript/frontend/angular/angular-v{value}.md"
+          },
+          {
+            "id": "vue_version",
+            "question": "Which Vue.js version are you using?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "3.5", "label": "Vue 3.5.x (Latest)"},
+              {"value": "3", "label": "Vue 3.x"},
+              {"value": "2", "label": "Vue 2.x"},
+              {"value": "other", "label": "Other/Custom"}
+            ],
+            "reference_doc_path": "languages/javascript/frontend/vue/vue-v{value}.md"
+          },
+          {
+            "id": "python_framework",
+            "question": "Which Python framework are you primarily using?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "django", "label": "Django"},
+              {"value": "flask", "label": "Flask"},
+              {"value": "fastapi", "label": "FastAPI"},
+              {"value": "pandas", "label": "Pandas (Data Analysis)"},
+              {"value": "tensorflow", "label": "TensorFlow/Keras"},
+              {"value": "pytorch", "label": "PyTorch"},
+              {"value": "vanilla", "label": "Vanilla Python (no framework)"},
+              {"value": "other", "label": "Other"}
+            ],
+            "follow_ups": {
+              "django": ["django_version"],
+              "flask": ["flask_version"],
+              "fastapi": ["fastapi_version"],
+              "pandas": ["pandas_version"],
+              "tensorflow": ["tensorflow_version"],
+              "pytorch": ["pytorch_version"],
+              "other": ["framework_details"]
+            },
+            "reference_doc_base": "languages/python/"
+          },
+          {
+            "id": "django_version",
+            "question": "Which Django version are you using?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "5.1", "label": "Django 5.1 (Latest)"},
+              {"value": "4.2", "label": "Django 4.2"},
+              {"value": "other", "label": "Other/Custom"}
+            ],
+            "reference_doc_path": "languages/python/backend/django/django-v{value}.md"
+          },
+          {
+            "id": "database",
+            "question": "Which database technology are you using?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "postgresql", "label": "PostgreSQL"},
+              {"value": "mysql", "label": "MySQL"},
+              {"value": "mongodb", "label": "MongoDB"},
+              {"value": "sqlite", "label": "SQLite"},
+              {"value": "redis", "label": "Redis"},
+              {"value": "neo4j", "label": "Neo4j"},
+              {"value": "qdrant", "label": "Qdrant"},
+              {"value": "none", "label": "No database"},
+              {"value": "other", "label": "Other"}
+            ],
+            "follow_ups": {
+              "postgresql": ["postgresql_version"],
+              "mysql": ["mysql_version"],
+              "mongodb": ["mongodb_version"],
+              "sqlite": ["sqlite_version"],
+              "redis": ["redis_version"],
+              "neo4j": ["neo4j_version"],
+              "qdrant": ["qdrant_version"],
+              "other": ["database_details"]
+            },
+            "reference_doc_base": "databases/"
+          },
+          {
+            "id": "framework_details",
+            "question": "Please provide details about your framework/library including the name and version:",
+            "type": "text",
+            "placeholder": "e.g., Remix 2.0.1"
+          },
+          {
+            "id": "language_details",
+            "question": "Please provide details about your programming language including the name and version:",
+            "type": "text",
+            "placeholder": "e.g., Kotlin 1.9.22"
+          }
+        ]
+      },
+      "phase2_team": {
+        "title": "Team Structure & Development Approach",
+        "description": "Understand team composition and methodology",
+        "transition_message": "Now that we understand your technology stack, let's discuss your team structure and development approach.",
+        "questions": [
+          {
+            "id": "team_size",
+            "question": "How many people are on your development team?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "solo", "label": "Just me"},
+              {"value": "small", "label": "2-5 people"},
+              {"value": "medium", "label": "6-15 people"},
+              {"value": "large", "label": "More than 15 people"}
+            ],
+            "impacts": {
+              "solo": {
+                "max_modes": 5
+              },
+              "small": {
+                "max_modes": 7
+              },
+              "medium": {
+                "max_modes": 10
+              },
+              "large": {
+                "max_modes": 15
+              }
+            }
+          },
+          {
+            "id": "experience_level",
+            "question": "What is the overall experience level with this technology stack?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "beginner", "label": "Beginner (learning the basics)"},
+              {"value": "intermediate", "label": "Intermediate (some experience)"},
+              {"value": "advanced", "label": "Advanced (experienced developers)"},
+              {"value": "mixed", "label": "Mixed (various experience levels)"}
+            ],
+            "impacts": {
+              "beginner": {
+                "add_modes": ["learn"],
+                "remove_modes": ["architect", "security", "perf", "cloud"]
+              },
+              "intermediate": {
+                "add_modes": [],
+                "remove_modes": []
+              },
+              "advanced": {
+                "add_modes": ["perf", "security"],
+                "remove_modes": ["learn"]
+              },
+              "mixed": {
+                "add_modes": ["learn"],
+                "remove_modes": []
+              }
+            }
+          },
+          {
+            "id": "team_roles",
+            "question": "Which specific roles exist on your team? (select all that apply)",
+            "type": "multiple_select",
+            "options": [
+              {"value": "frontend", "label": "Frontend Developers"},
+              {"value": "backend", "label": "Backend Developers"},
+              {"value": "fullstack", "label": "Full-stack Developers"},
+              {"value": "designer", "label": "UI/UX Designers"},
+              {"value": "devops", "label": "DevOps Engineers"},
+              {"value": "qa", "label": "QA/Testing Specialists"},
+              {"value": "pm", "label": "Project Managers"},
+              {"value": "data", "label": "Data Scientists/Engineers"}
+            ],
+            "mode_impacts": {
+              "frontend": ["frontend+1"],
+              "backend": ["backend+1"],
+              "fullstack": ["engineer+1"],
+              "designer": ["ui+2"],
+              "devops": ["devops+2"],
+              "qa": ["qa+2"],
+              "pm": ["architect+1"],
+              "data": ["dba+2", "analyst+2"]
+            }
+          },
+          {
+            "id": "development_methodology",
+            "question": "Which development methodology do you follow?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "agile", "label": "Agile/Scrum"},
+              {"value": "kanban", "label": "Kanban"},
+              {"value": "waterfall", "label": "Waterfall"},
+              {"value": "hybrid", "label": "Hybrid approach"},
+              {"value": "none", "label": "No formal methodology"}
+            ],
+            "mode_impacts": {
+              "agile": ["architect+1"],
+              "kanban": ["architect+1"],
+              "waterfall": ["architect+2", "writer+1"],
+              "hybrid": ["architect+1"],
+              "none": []
+            }
+          }
+        ]
+      },
+      "phase3_details": {
+        "title": "Detailed Technology Profile",
+        "description": "Explore specific technology versions and dependencies",
+        "transition_message": "Let's dive deeper into the specific versions and dependencies of your technologies.",
+        "questions": [
+          {
+            "id": "package_analysis",
+            "question": "Would you like me to analyze your package file (e.g., package.json, requirements.txt) to identify dependencies?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "yes", "label": "Yes, analyze my package file"},
+              {"value": "no", "label": "No, I'll provide information manually"}
+            ],
+            "follow_ups": {
+              "yes": ["package_file_path"],
+              "no": ["manual_dependencies"]
+            }
+          },
+          {
+            "id": "package_file_path",
+            "question": "What is the path to your package file?",
+            "type": "text",
+            "placeholder": "e.g., package.json or requirements.txt"
+          },
+          {
+            "id": "manual_dependencies",
+            "question": "Please list your key dependencies and their versions:",
+            "type": "text",
+            "placeholder": "e.g., react-router 6.4.0, redux 4.2.0"
+          },
+          {
+            "id": "development_focus",
+            "question": "What are your primary development focuses? (select all that apply)",
+            "type": "multiple_select",
+            "options": [
+              {"value": "features", "label": "Implementing new features"},
+              {"value": "bugs", "label": "Fixing bugs"},
+              {"value": "refactoring", "label": "Code refactoring/improvement"},
+              {"value": "performance", "label": "Performance optimization"},
+              {"value": "security", "label": "Security improvements"},
+              {"value": "accessibility", "label": "Accessibility enhancements"}
+            ],
+            "mode_impacts": {
+              "features": ["engineer+3", "architect+1"],
+              "bugs": ["qa+3", "engineer+2"],
+              "refactoring": ["engineer+3", "architect+2"],
+              "performance": ["perf+3", "engineer+1"],
+              "security": ["security+3"],
+              "accessibility": ["ui+3", "frontend+1"]
+            }
+          },
+          {
+            "id": "specialized_needs",
+            "question": "Do you have any specialized needs? (select all that apply)",
+            "type": "multiple_select",
+            "options": [
+              {"value": "cicd", "label": "CI/CD and Deployment Automation"},
+              {"value": "docs", "label": "Documentation Generation"},
+              {"value": "testing", "label": "Comprehensive Testing"},
+              {"value": "analytics", "label": "Data Analytics Integration"},
+              {"value": "monitoring", "label": "Monitoring and Logging"},
+              {"value": "compliance", "label": "Regulatory Compliance"},
+              {"value": "none", "label": "None of the above"}
+            ],
+            "mode_impacts": {
+              "cicd": ["devops+3"],
+              "docs": ["writer+3", "architect+1"],
+              "testing": ["qa+3"],
+              "analytics": ["dba+2", "analyst+3"],
+              "monitoring": ["sre+3", "devops+2"],
+              "compliance": ["security+3", "writer+1"],
+              "none": []
+            }
+          },
+          {
+            "id": "learning_needs",
+            "question": "Does your team need learning support for specific technologies?",
+            "type": "multiple_choice",
+            "options": [
+              {"value": "yes", "label": "Yes, we have learning needs"},
+              {"value": "no", "label": "No, we're comfortable with all technologies"}
+            ],
+            "follow_ups": {
+              "yes": ["learning_areas"],
+              "no": []
+            }
+          },
+          {
+            "id": "learning_areas",
+            "question": "Which areas do you need learning support for? (select all that apply)",
+            "type": "multiple_select",
+            "options": [
+              {"value": "framework", "label": "Framework/Library"},
+              {"value": "language", "label": "Programming Language"},
+              {"value": "architecture", "label": "Architecture Patterns"},
+              {"value": "testing", "label": "Testing Best Practices"},
+              {"value": "devops", "label": "DevOps and Deployment"},
+              {"value": "security", "label": "Security Practices"}
+            ],
+            "mode_impacts": {
+              "framework": ["learn+3"],
+              "language": ["learn+3"],
+              "architecture": ["architect+2", "learn+2"],
+              "testing": ["qa+2", "learn+2"],
+              "devops": ["devops+2", "learn+2"],
+              "security": ["security+2", "learn+2"]
+            }
+          }
+        ]
+      },
+      "phase_transitions": {
+        "phase1_to_phase2": {
+          "required_fields": ["primary_language", "project_type"],
+          "transition_message": "Now that we understand your technology stack, let's discuss your team structure."
+        },
+        "phase2_to_phase3": {
+          "required_fields": ["team_size", "experience_level"],
+          "transition_message": "Let's dive deeper into the specific versions and dependencies of your technologies."
+        },
+        "phase3_to_recommendations": {
+          "transition_message": "Based on your responses, I'll now recommend custom modes for your project."
+        }
+      },
+      "reference_doc_mapping": {
+        "pattern": "languages/{primary_language}/{type}/{framework}/{framework}-v{version}.md",
+        "fallback_strategy": "closest_version",
+        "creation_support": true
+      },
+      "mode_selection_logic": {
+        "threshold": 3,
+        "essential_modes": ["commander", "engineer"],
+        "mode_groups": {
+          "planning": ["architect", "ui", "api"],
+          "implementation": ["engineer", "frontend", "backend", "mobile", "dba"],
+          "quality": ["qa", "security", "perf"],
+          "operations": ["devops", "sre", "cloud"],
+          "documentation": ["writer", "learn", "analyst"]
+        }
+      }
+    }
+  }
+  

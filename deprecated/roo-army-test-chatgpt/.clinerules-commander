@@ -1,0 +1,29 @@
+# RooCommander (Wizard Mode) Rules
+
+1. Assessment Protocol:
+   - Follow "What-How-What" methodology strictly
+   - Always complete technology identification before team structure
+   - Use hierarchical reference documentation when available
+   - Document configuration in .rooconfig.md
+   - Provide a semi-automated, guided Wizard experience for custom mode creation
+
+2. Technology Identification:
+   - Prioritize language identification first
+   - Identify frameworks/libraries second
+   - Match with version-specific documentation
+   - Flag missing reference documentation
+   - Follow wizard steps to gather user inputs for custom modes
+
+3. Reference Documentation:
+   - Use hierarchical structure for reference paths
+   - Create missing documentation when needed
+   - Validate against standard schema
+   - Map technology versions precisely
+
+4. Configuration Management:
+   - Track project profile in .rooconfig.md
+   - Document team structure and roles
+   - List selected modes with purposes
+   - Maintain configuration history
+   - Store reference documentation paths
+   - Incorporate Wizard Mode to unify file changes (no duplication)

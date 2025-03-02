@@ -181,14 +181,129 @@
           "question": "Please provide details about your programming language including the name and version:",
           "type": "text",
           "placeholder": "e.g., Kotlin 1.9.22"
+        },
+        {
+          "id": "existing_project",
+          "question": "Are you configuring for an existing project or a new project?",
+          "type": "multiple_choice",
+          "options": [
+            {"value": "existing", "label": "Existing project (already has code)"},
+            {"value": "new", "label": "New project (starting from scratch)"}
+          ],
+          "follow_ups": {
+            "existing": ["project_scan_permission"],
+            "new": []
+          }
+        },
+        {
+          "id": "project_scan_permission",
+          "question": "Would you like me to scan your project to detect technologies and patterns?",
+          "type": "multiple_choice",
+          "options": [
+            {"value": "yes", "label": "Yes, analyze my project structure and files"},
+            {"value": "no", "label": "No, I'll provide information manually"}
+          ],
+          "follow_ups": {
+            "yes": ["project_scan_path"],
+            "no": []
+          }
+        },
+        {
+          "id": "project_scan_path",
+          "question": "What's the path to your project's root directory?",
+          "type": "text",
+          "placeholder": "e.g., . (current directory) or ./my-project"
         }
       ]
     },
-    "phase2_team": {
-      "title": "Team Structure & Development Approach",
-      "description": "Understand team composition and methodology",
-      "transition_message": "Now that we understand your technology stack, let's discuss your team structure and development approach.",
+    "phase2_project_complexity": {
+      "title": "Project Complexity & Philosophy",
+      "description": "Understand your project's complexity and development philosophy",
+      "transition_message": "Now that we understand your technology stack, let's explore your project's complexity and development philosophy.",
       "questions": [
+        {
+          "id": "project_complexity",
+          "question": "Where does your project fit in these complexity categories?",
+          "description": "This helps determine the right approach to your development process.",
+          "type": "multiple_choice",
+          "options": [
+            {"value": "simple", "label": "Simple - Well-understood problem with established solutions"},
+            {"value": "complicated", "label": "Complicated - Requires expertise but solutions are knowable"},
+            {"value": "complex", "label": "Complex - Involves unknowns, needs experimentation and adaptation"}
+          ],
+          "impacts": {
+            "simple": {
+              "priorities": ["speed", "standardization"],
+              "remove_modes": ["architect", "experimental"],
+              "customInstructions": "Focus on rapid implementation using established patterns. Favor straightforward approaches over clever solutions. Include essential tests focused on critical paths."
+            },
+            "complicated": {
+              "priorities": ["expertise", "best_practices"],
+              "add_modes": ["architect"],
+              "customInstructions": "Apply proven design patterns appropriate for this domain. Ensure comprehensive testing of edge cases. Document architectural decisions and their rationales."
+            },
+            "complex": {
+              "priorities": ["experimentation", "feedback_loops"],
+              "add_modes": ["experimental", "architect"],
+              "customInstructions": "Implement iterative solutions that can evolve. Start with minimal viable implementations. Build in feedback mechanisms and observability. Document assumptions and create easy paths for revision."
+            }
+          }
+        },
+        {
+          "id": "development_philosophy",
+          "question": "Which development approaches resonate with your team?",
+          "description": "Select all that apply to your preferred development style.",
+          "type": "multiple_select",
+          "options": [
+            {"value": "tdd", "label": "Test-Driven Development - Tests first, then code"},
+            {"value": "bdd", "label": "Behavior-Driven Development - Define behavior scenarios first"},
+            {"value": "ddd", "label": "Domain-Driven Design - Business domains guide architecture"},
+            {"value": "doc_first", "label": "Documentation-First - Clear specs before implementation"},
+            {"value": "component", "label": "Component-Based - Building from reusable parts"},
+            {"value": "feature", "label": "Feature-Focused - Organizing around user features"},
+            {"value": "none", "label": "No specific philosophy - Pragmatic approach"}
+          ],
+          "mode_impacts": {
+            "tdd": ["qa+3", "engineer+1"],
+            "bdd": ["qa+2", "architect+1"],
+            "ddd": ["architect+3", "dba+1"],
+            "doc_first": ["writer+3", "architect+1"],
+            "component": ["frontend+2", "engineer+1"],
+            "feature": ["engineer+2", "architect+1"]
+          }
+        },
+        {
+          "id": "quality_priority",
+          "question": "On a scale from 1-5, where would you position your project priorities?",
+          "type": "scale",
+          "label": "Development Speed vs. Code Quality",
+          "min_label": "1: Heavily favor speed (get it working now)",
+          "max_label": "5: Heavily favor quality (comprehensive testing)",
+          "default": 3,
+          "impacts": {
+            "1": {
+              "add_modes": ["engineer"],
+              "remove_modes": ["qa", "security", "writer"],
+              "customInstructions": "Prioritize working solutions over perfect code. Focus on core functionality first. Use simple, direct approaches for non-critical paths."
+            },
+            "2": {
+              "add_modes": ["engineer"],
+              "remove_modes": ["qa", "writer"]
+            },
+            "3": {
+              "balanced": true
+            },
+            "4": {
+              "add_modes": ["qa", "writer"],
+              "customInstructions": "Prioritize code quality and maintainability. Implement comprehensive test coverage for critical features."
+            },
+            "5": {
+              "add_modes": ["qa", "security", "writer"],
+              "remove_modes": ["experimental"],
+              "customInstructions": "Prioritize maintainable, well-tested code. Implement comprehensive test coverage. Follow established patterns and thoroughly test all code paths."
+            }
+          }
+        },
         {
           "id": "team_size",
           "question": "How many people are on your development team?",
@@ -214,6 +329,30 @@
             }
           }
         },
+        {
+          "id": "handoff_interest",
+          "question": "For projects that span multiple sessions or team members, our handoff system helps maintain context and document progress. Would this be useful for your project?",
+          "type": "multiple_choice",
+          "options": [
+            {"value": "yes", "label": "Yes, the handoff system would be helpful"},
+            {"value": "no", "label": "No, I don't need the handoff system"}
+          ],
+          "impacts": {
+            "yes": {
+              "add_modes": ["handoff-manager", "milestone-manager", "session-restorer"]
+            },
+            "no": {
+              "remove_modes": ["handoff-manager", "milestone-manager", "session-restorer"]
+            }
+          }
+        }
+      ]
+    },
+    "phase3_roles_focus": {
+      "title": "Team Roles & Development Focus",
+      "description": "Understand team composition and specific development needs",
+      "transition_message": "Let's discuss your team's structure and specific development focuses.",
+      "questions": [
         {
           "id": "experience_level",
           "question": "What is the overall experience level with this technology stack?",
@@ -269,57 +408,6 @@
           }
         },
         {
-          "id": "development_methodology",
-          "question": "Which development methodology do you follow?",
-          "type": "multiple_choice",
-          "options": [
-            {"value": "agile", "label": "Agile/Scrum"},
-            {"value": "kanban", "label": "Kanban"},
-            {"value": "waterfall", "label": "Waterfall"},
-            {"value": "hybrid", "label": "Hybrid approach"},
-            {"value": "none", "label": "No formal methodology"}
-          ],
-          "mode_impacts": {
-            "agile": ["architect+1"],
-            "kanban": ["architect+1"],
-            "waterfall": ["architect+2", "writer+1"],
-            "hybrid": ["architect+1"],
-            "none": []
-          }
-        }
-      ]
-    },
-    "phase3_details": {
-      "title": "Detailed Technology Profile",
-      "description": "Explore specific technology versions and dependencies",
-      "transition_message": "Let's dive deeper into the specific versions and dependencies of your technologies.",
-      "questions": [
-        {
-          "id": "package_analysis",
-          "question": "Would you like me to analyze your package file (e.g., package.json, requirements.txt) to identify dependencies?",
-          "type": "multiple_choice",
-          "options": [
-            {"value": "yes", "label": "Yes, analyze my package file"},
-            {"value": "no", "label": "No, I'll provide information manually"}
-          ],
-          "follow_ups": {
-            "yes": ["package_file_path"],
-            "no": ["manual_dependencies"]
-          }
-        },
-        {
-          "id": "package_file_path",
-          "question": "What is the path to your package file?",
-          "type": "text",
-          "placeholder": "e.g., package.json or requirements.txt"
-        },
-        {
-          "id": "manual_dependencies",
-          "question": "Please list your key dependencies and their versions:",
-          "type": "text",
-          "placeholder": "e.g., react-router 6.4.0, redux 4.2.0"
-        },
-        {
           "id": "development_focus",
           "question": "What are your primary development focuses? (select all that apply)",
           "type": "multiple_select",
@@ -345,18 +433,24 @@
           "question": "Do you have any specialized needs? (select all that apply)",
           "type": "multiple_select",
           "options": [
+            {"value": "framework_specific", "label": "Framework-Specific Testing/Development"},
+            {"value": "natural_language", "label": "Natural Language Programming (intent-driven)"},
+            {"value": "user_stories", "label": "User Story Creation and Management"},
+            {"value": "code_review", "label": "Specialized Code Review"},
             {"value": "cicd", "label": "CI/CD and Deployment Automation"},
             {"value": "docs", "label": "Documentation Generation"},
-            {"value": "testing", "label": "Comprehensive Testing"},
             {"value": "analytics", "label": "Data Analytics Integration"},
             {"value": "monitoring", "label": "Monitoring and Logging"},
             {"value": "compliance", "label": "Regulatory Compliance"},
             {"value": "none", "label": "None of the above"}
           ],
           "mode_impacts": {
+            "framework_specific": ["framework-tester+3"],
+            "natural_language": ["vibemode+3"],
+            "user_stories": ["user-story+3"],
+            "code_review": ["reviewer+3"],
             "cicd": ["devops+3"],
             "docs": ["writer+3", "architect+1"],
-            "testing": ["qa+3"],
             "analytics": ["dba+2", "analyst+3"],
             "monitoring": ["sre+3", "devops+2"],
             "compliance": ["security+3", "writer+1"],
@@ -399,17 +493,94 @@
         }
       ]
     },
+    "phase4_existing_project": {
+      "title": "Existing Project Analysis",
+      "description": "Analyze existing project structure and conventions",
+      "transition_message": "Let's analyze your existing project structure and patterns.",
+      "questions": [
+        {
+          "id": "existing_conventions",
+          "question": "What aspects of your existing project would you like to preserve?",
+          "type": "multiple_select",
+          "options": [
+            {"value": "code_style", "label": "Code style and formatting"},
+            {"value": "architecture", "label": "Architectural patterns"},
+            {"value": "testing", "label": "Testing approach"},
+            {"value": "documentation", "label": "Documentation style"},
+            {"value": "all", "label": "All existing conventions"},
+            {"value": "none", "label": "None - I'm open to changes"}
+          ],
+          "impacts": {
+            "code_style": {
+              "preserve_conventions": true,
+              "customInstructions": "Preserve existing code style and formatting conventions."
+            },
+            "architecture": {
+              "preserve_architecture": true,
+              "customInstructions": "Respect existing architectural patterns and structures."
+            },
+            "testing": {
+              "preserve_testing": true,
+              "customInstructions": "Maintain consistency with existing testing approaches."
+            },
+            "documentation": {
+              "preserve_docs": true,
+              "customInstructions": "Follow established documentation formats and styles."
+            },
+            "all": {
+              "preserve_all": true,
+              "customInstructions": "Strictly adhere to all established project conventions."
+            },
+            "none": {
+              "suggest_improvements": true,
+              "customInstructions": "Suggest improvements to existing conventions when appropriate."
+            }
+          }
+        },
+        {
+          "id": "improvement_areas",
+          "question": "Which areas of your existing project would you like to improve? (select all that apply)",
+          "type": "multiple_select",
+          "options": [
+            {"value": "code_quality", "label": "Code quality and organization"},
+            {"value": "test_coverage", "label": "Test coverage"},
+            {"value": "documentation", "label": "Documentation"},
+            {"value": "architecture", "label": "Architecture and design"},
+            {"value": "performance", "label": "Performance"},
+            {"value": "security", "label": "Security"},
+            {"value": "none", "label": "None - I'm satisfied with all aspects"}
+          ],
+          "mode_impacts": {
+            "code_quality": ["engineer+3", "architect+1"],
+            "test_coverage": ["qa+3"],
+            "documentation": ["writer+3"],
+            "architecture": ["architect+3"],
+            "performance": ["perf+3"],
+            "security": ["security+3"],
+            "none": []
+          }
+        }
+      ]
+    },
     "phase_transitions": {
       "phase1_to_phase2": {
         "required_fields": ["primary_language", "project_type"],
-        "transition_message": "Now that we understand your technology stack, let's discuss your team structure."
+        "transition_message": "Now that we understand your technology stack, let's explore your project's complexity and development philosophy."
       },
       "phase2_to_phase3": {
-        "required_fields": ["team_size", "experience_level"],
-        "transition_message": "Let's dive deeper into the specific versions and dependencies of your technologies."
+        "required_fields": ["project_complexity", "development_philosophy"],
+        "transition_message": "Let's discuss your team's structure and specific development focuses."
+      },
+      "phase3_to_phase4": {
+        "condition": "existing_project == 'existing'",
+        "transition_message": "Let's analyze your existing project structure and patterns."
       },
       "phase3_to_recommendations": {
+        "condition": "existing_project != 'existing'",
         "transition_message": "Based on your responses, I'll now recommend custom modes for your project."
+      },
+      "phase4_to_recommendations": {
+        "transition_message": "Based on your responses and project analysis, I'll now recommend custom modes for your project."
       }
     },
     "reference_doc_mapping": {
@@ -425,7 +596,9 @@
         "implementation": ["engineer", "frontend", "backend", "mobile", "dba"],
         "quality": ["qa", "security", "perf"],
         "operations": ["devops", "sre", "cloud"],
-        "documentation": ["writer", "learn", "analyst"]
+        "documentation": ["writer", "learn", "analyst"],
+        "handoff": ["handoff-manager", "milestone-manager", "session-restorer"],
+        "specialized": ["framework-tester", "vibemode", "user-story", "reviewer", "experimental"]
       }
     }
   }

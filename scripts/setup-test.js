@@ -6,6 +6,7 @@
  * 2. Copying essential files from roo-commander to roo-army-test
  * 3. Setting up the component-based system prompt architecture
  * 4. Assembling the system prompt from components
+ * 5. Copying the handoff system files and structure
  */
 
 const fs = require('fs');
@@ -170,6 +171,25 @@ async function setupTest() {
       }
     });
 
+    // Copy handoffs directory with all its contents
+    try {
+      const sourceHandoffsDir = path.join(sourceDir, 'handoffs');
+      const targetHandoffsDir = path.join(testDir, 'handoffs');
+      
+      if (fs.existsSync(sourceHandoffsDir)) {
+        // Ensure the target directory exists
+        ensureDir(targetHandoffsDir);
+        
+        // Use the recursive copyDir function to copy the entire structure
+        copyDir(sourceHandoffsDir, targetHandoffsDir);
+        console.log('- Copied handoffs system directory and all contents');
+      } else {
+        console.log(`- Warning: Handoffs directory not found: ${sourceHandoffsDir}`);
+      }
+    } catch (err) {
+      console.error(`- Error copying handoffs directory: ${err.message}`);
+    }
+    
     // Copy .roo/components directory
     try {
       const sourceComponentsDir = path.join(sourceDir, '.roo', 'components');
