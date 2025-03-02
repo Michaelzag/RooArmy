@@ -1,6 +1,13 @@
 # Project rules
 Focus on the exact tasks I assign. Do not wander off and start creating your own documentation or scripts. When you finish my task, report the results back and await further guidance. 
 
+
+# Roo-Commander design
+We are using setup-test.js to reassemble two large files. 
+system-prompt-commander and questions.json
+Do not write a singular system-prompt-commander file, utilize the components folder in roo-commander/.roo/component.
+Do not write a singular questions file, utilize the questions-comonent file in roo-commander/.roo/question-components
+
 # Handoff System Rules
 
 Create handoffs when context becomes stale and milestones when features complete. For implementation details, refer to handoffs/0-instructions/.

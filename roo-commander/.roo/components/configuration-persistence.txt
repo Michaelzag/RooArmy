@@ -9,26 +9,29 @@ You implement a robust configuration persistence system using a standardized .ro
 The .rooconfig.md file follows this structure:
 
 ```md
-# RooCommander Configuration
+# Project Configuration
 
 ## Project Profile
-- **Main Language**: [language]
-- **Frameworks**: [framework] v[version], [framework] v[version]
-- **Project Type**: [type]
-- **Database**: [database] v[version]
+- **Name**: [project_name]
+- **Type**: [project_type]
+- **Primary Language**: [language]
+- **Framework**: [framework] v[version]
+- **Technology Stack**: [stack_description]
+- **Development Philosophy**: [philosophy]
+- **Complexity Domain**: [domain]
 
-## Team Structure
-- **Size**: [size]
+## Development Approach
+- **Quality/Speed Balance**: [balance]
 - **Experience Level**: [level]
-- **Key Roles**: [role], [role], [role]
+- **Development Focus**: [focus_areas]
 
-## Selected Modes
+## Selected Expertise Areas
 - [mode] ([purpose])
 - [mode] ([purpose])
 - [mode] ([purpose])
 
 ## Configuration History
-- **Initial Setup**: [date]
+- **Initial Configuration**: [date]
 - **Last Modified**: [date] ([change description])
 
 ## Reference Documentation
@@ -46,41 +49,45 @@ The .rooconfig.md file follows this structure:
    ```
 
 2. Parse sections to extract key information:
-   - Project Profile: Main language, frameworks, project type
-   - Team Structure: Size, experience level, roles
-   - Selected Modes: Current mode configuration
+   - Project Profile: Project name, type, language, frameworks, etc.
+   - Development Approach: Quality/speed balance, experience level, focus areas
+   - Selected Expertise Areas: Current mode configuration
    - Configuration History: Previous modifications
    - Reference Documentation: Paths to reference docs
 
 3. Use extracted information to inform assessment:
    - If configuration exists, start with existing values
    - Verify if technologies or versions have changed
-   - Check if team structure has evolved
+   - Check if development priorities have evolved
 
 ### Writing Configuration
 1. Initial Creation Example:
    ```
-   # RooCommander Configuration
+   # Project Configuration
 
    ## Project Profile
-   - **Main Language**: JavaScript
-   - **Frameworks**: React v18.2, Express v4.18
-   - **Project Type**: Web Application
-   - **Database**: MongoDB v6.0
+   - **Name**: E-commerce Platform
+   - **Type**: Web Application
+   - **Primary Language**: JavaScript
+   - **Framework**: React v18.2
+   - **Technology Stack**: MERN (MongoDB, Express, React, Node.js)
+   - **Development Philosophy**: Component-Based
+   - **Complexity Domain**: Complicated
 
-   ## Team Structure
-   - **Size**: Small (2-5 people)
+   ## Development Approach
+   - **Quality/Speed Balance**: Quality-focused
    - **Experience Level**: Intermediate
-   - **Key Roles**: Frontend, Backend, DevOps
+   - **Development Focus**: User experience, API integration, data management
 
-   ## Selected Modes
-   - react-v18 (Frontend development)
-   - express-v4 (Backend API)
-   - mongodb-v6 (Database operations)
-   - devops (Deployment and operations)
+   ## Selected Expertise Areas
+   - react-v18 (Frontend component development)
+   - express-v4 (RESTful API implementation)
+   - mongodb-v6 (Database operations and schema design)
+   - architect (System architecture and integration)
+   - qa (Testing and quality assurance)
 
    ## Configuration History
-   - **Initial Setup**: 2025-03-01
+   - **Initial Configuration**: 2025-03-01
 
    ## Reference Documentation
    - languages/javascript/frontend/react/react-v18.md: Available
@@ -124,5 +131,6 @@ GIVEN existing configuration:
 - IF minor updates needed → preserve most settings, update specific sections
 - IF major changes needed → start fresh assessment, reference previous settings
 - IF version updates only → update version references, check for compatibility
-- IF adding specialized roles → add to mode list, adjust team structure if needed
+- IF adding specialized expertise → add to expertise areas list, update development approach if needed
 - IF reference docs have moved in hierarchy → update reference paths
+- IF file marked as placeholder → treat as new project, perform complete assessment

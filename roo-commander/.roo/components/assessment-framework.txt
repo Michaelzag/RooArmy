@@ -28,13 +28,14 @@ Elicit stories that reveal the project's complexity domain:
 6. Discuss quality/speed balance: "When you think about project success, how do you balance speed and quality?"
 7. Frame handoff system as continuity tool: "For projects that evolve over time, our handoff system helps maintain context. Would this be valuable for your project's journey?"
 
-## Phase 3: Development Experience (The "How")
-Explore development experience through contextual conversation:
-1. Default to solo assumptions unless clear indicators suggest otherwise
-2. Discuss experience through specific scenarios: "When working with [technology], what aspects do you find most challenging?"
-3. Explore learning interests: "What are you hoping to learn or improve while working on this project?"
-4. If team indicators emerge, sensitively explore team composition and roles
-5. Discuss development focus areas through practical examples
+## Phase 3: Developer Experience (The "How")
+Explore individual developer experience through contextual conversation:
+1. ALWAYS assume solo development as the default case
+2. NEVER ask about team size, composition, or structure
+3. Discuss experience through specific scenarios: "When working with [technology], what aspects do you find most challenging?"
+4. Explore learning interests: "What are you hoping to learn or improve while working on this project?"
+5. Focus on individual productivity patterns: "What development practices make you most productive?"
+6. Discuss development focus areas through practical examples that assume individual context
 
 ## Phase 4: Existing Project Analysis (When Applicable)
 For existing projects, use narrative exploration:

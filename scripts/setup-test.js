@@ -86,14 +86,15 @@ function assembleSystemPrompt(componentsDir, outputFile) {
       'header.txt',
       'project-analysis.txt',
       'assessment-framework.txt',
+      'assessment-flowchart.txt',      // Added flowchart component
       'complexity-assessment.txt',
       'technology-identification.txt',
       'solo-developer.txt',
       'wizard-customization.txt',
       'development-philosophy.txt',
       'existing-project.txt',
-      'dynamic-mode-generation.txt', // Add the new dynamic approach
-      'mode-selection.txt',          // Keep for backward compatibility
+      'dynamic-mode-generation.txt',    // Add the new dynamic approach
+      'mode-selection.txt',            // Keep for backward compatibility
       'safety-rules.txt'
     ];
     
@@ -190,6 +191,8 @@ function assembleQuestions(componentsDir, outputFile) {
       if (phase1Data) {
         questions.assessment.phase1_technology = phase1Data;
       }
+    } else {
+      console.error(`- Critical component missing: phase1_technology.json not found in ${componentsDir}`);
     }
 
     // Load phase2 complexity
@@ -199,9 +202,11 @@ function assembleQuestions(componentsDir, outputFile) {
       if (phase2Data) {
         questions.assessment.phase2_project_complexity = phase2Data;
       }
+    } else {
+      console.error(`- Critical component missing: phase2_complexity.json not found in ${componentsDir}`);
     }
 
-    // Load phase3 development experience (unified approach)
+    // Load phase3 development experience (solo-first unified approach)
     const phase3File = path.join(componentsDir, 'phase3_development_experience.json');
     if (fs.existsSync(phase3File)) {
       const phase3Data = loadJSON(phase3File);
@@ -209,17 +214,15 @@ function assembleQuestions(componentsDir, outputFile) {
         questions.assessment.phase3_development_experience = phase3Data;
       }
     } else {
-      // Fallback to old team/solo split for backward compatibility
-      console.log('- Using fallback team/solo structure (backward compatibility)');
-      const oldPhase3File = path.join(componentsDir, 'phase3_team_focus.json');
-      if (fs.existsSync(oldPhase3File)) {
-        const oldPhase3Data = loadJSON(oldPhase3File);
-        if (oldPhase3Data) {
-          // For backward compatibility, keep these fields
-          questions.assessment.phase3_roles_focus = oldPhase3Data.team || {};
-          questions.assessment.phase3_solo_focus = oldPhase3Data.solo || {};
-        }
-      }
+      console.error(`- Critical component missing: phase3_development_experience.json not found in ${componentsDir}`);
+      // Do not fall back to the deprecated team/solo approach
+      // Add placeholder for required section
+      questions.assessment.phase3_development_experience = {
+        "title": "Developer Experience",
+        "description": "Your development experience and learning interests",
+        "transition_message": "Let's discuss your development experience and learning interests.",
+        "questions": []
+      };
     }
 
     // Load phase4 development focus
@@ -229,6 +232,8 @@ function assembleQuestions(componentsDir, outputFile) {
       if (phase4Data) {
         questions.assessment.phase4_development_focus = phase4Data;
       }
+    } else {
+      console.error(`- Critical component missing: phase4_development_focus.json not found in ${componentsDir}`);
     }
 
     // Load phase5 existing project
@@ -238,6 +243,8 @@ function assembleQuestions(componentsDir, outputFile) {
       if (phase5Data) {
         questions.assessment.phase5_existing_project = phase5Data;
       }
+    } else {
+      console.error(`- Critical component missing: phase5_existing_project.json not found in ${componentsDir}`);
     }
 
     // Load phase6 mode customization
@@ -247,6 +254,8 @@ function assembleQuestions(componentsDir, outputFile) {
       if (phase6Data) {
         questions.assessment.phase6_mode_customization = phase6Data;
       }
+    } else {
+      console.error(`- Critical component missing: phase6_wizard_customization.json not found in ${componentsDir}`);
     }
 
     // Load phase transitions
@@ -256,6 +265,8 @@ function assembleQuestions(componentsDir, outputFile) {
       if (transitionsData) {
         questions.assessment.phase_transitions = transitionsData;
       }
+    } else {
+      console.error(`- Critical component missing: phase_transitions.json not found in ${componentsDir}`);
     }
 
     // Write the assembled questions.json
@@ -309,6 +320,20 @@ async function setupTest() {
         console.error(`- Error copying ${file}: ${err.message}`);
       }
     });
+
+    // Explicitly check for and delete any existing questions.json in the test directory
+    const existingQuestionsPath = path.join(testDir, 'questions.json');
+    if (fs.existsSync(existingQuestionsPath)) {
+      console.log('- Found existing questions.json in test directory, removing it.');
+      safeDeleteFile(existingQuestionsPath);
+    }
+
+    // Explicitly check for and delete any existing questions.json in the source directory
+    const sourceQuestionsPath = path.join(sourceDir, 'questions.json');
+    if (fs.existsSync(sourceQuestionsPath)) {
+      console.log('- WARNING: Found questions.json in source directory. This should be generated from components only.');
+      // We don't delete from source, just log a warning
+    }
 
     // Copy handoffs directory with all its contents
     try {
@@ -395,14 +420,29 @@ async function setupTest() {
     const questionComponentsDir = path.join(testDir, '.roo', 'question-components');
     const questionsFile = path.join(testDir, 'questions.json');
     
-    // Delete existing questions.json if it exists
+    // Delete existing questions.json if it exists (again, for safety)
     safeDeleteFile(questionsFile);
     
-    // Assemble the questions.json
-    if (assembleQuestions(questionComponentsDir, questionsFile)) {
-      console.log('- Successfully assembled questions.json');
+    // Verify question components exist in the test directory
+    if (!fs.existsSync(questionComponentsDir)) {
+      console.error(`- ERROR: Question components directory not found: ${questionComponentsDir}`);
+      console.error('- Cannot assemble questions.json without components');
     } else {
-      console.error('- Error assembling questions.json');
+      // List components to verify they were copied correctly
+      console.log('- Question components found in test directory:');
+      try {
+        const files = fs.readdirSync(questionComponentsDir);
+        files.forEach(file => console.log(`  - ${file}`));
+      } catch (err) {
+        console.error(`- Error listing question components: ${err.message}`);
+      }
+      
+      // Assemble the questions.json
+      if (assembleQuestions(questionComponentsDir, questionsFile)) {
+        console.log('- Successfully assembled questions.json');
+      } else {
+        console.error('- Error assembling questions.json');
+      }
     }
     
     // Copy entire reference-docs directory recursively
@@ -455,7 +495,7 @@ async function setupTest() {
     try {
       const dummyConfigContent = `# PLACEHOLDER CONFIGURATION FILE
       
-## IMPORTANT: THIS IS NOT A REAL PROJECT CONFIGURATION
+# IMPORTANT: THIS IS NOT A REAL PROJECT CONFIGURATION
 
 This file exists solely to prevent error messages during setup.
 It contains NO actual project data and should NOT be used for
