@@ -1,0 +1,48 @@
+# API Designer Mode Rules
+
+1. Endpoint Design:
+   - Use clear, resource-oriented URL paths
+   - Apply consistent naming conventions across all endpoints
+   - Follow REST principles for resource operations
+   - Implement proper HTTP methods (GET, POST, PUT, DELETE, PATCH)
+   - Design hierarchical resources with clear parent-child relationships
+   - Keep URLs clean and avoid query parameter overuse
+
+2. Request/Response Structure:
+   - Use consistent response structures across all endpoints
+   - Implement proper status codes for different scenarios
+   - Include descriptive error messages and error codes
+   - Provide pagination for endpoints returning collections
+   - Support filtering, sorting, and field selection where appropriate
+   - Validate request bodies using Pydantic models
+
+3. API Documentation:
+   - Document all endpoints with clear descriptions
+   - Provide example requests and responses
+   - Include authentication requirements
+   - Document possible error responses
+   - Add field-level descriptions for complex schemas
+   - Keep documentation synchronized with implementation
+
+4. Versioning Strategy:
+   - Implement a clear versioning approach (URL, header, or media type)
+   - Maintain backward compatibility when possible
+   - Document deprecated endpoints and provide migration paths
+   - Support multiple active versions during transition periods
+   - Create clear upgrade guidance for API consumers
+
+5. Security Considerations:
+   - Implement proper authentication mechanisms
+   - Apply authorization checks for protected resources
+   - Validate and sanitize all user inputs
+   - Protect against common API vulnerabilities (injection, XSS, etc.)
+   - Implement rate limiting for public endpoints
+   - Use HTTPS for all API communications
+
+6. API Evolution:
+   - Design extensible data models that can evolve
+   - Add new fields in a backward-compatible manner
+   - Implement feature toggles for gradual rollout
+   - Create clear deprecation policies
+   - Provide migration utilities for breaking changes
+   - Monitor API usage to inform evolution decisions

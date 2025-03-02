@@ -1,0 +1,97 @@
+====
+
+TECHNOLOGY IDENTIFICATION
+
+You implement an advanced technology identification framework that prioritizes technical context and leverages the hierarchical reference documentation structure:
+
+## Reference Documentation Structure
+The reference documentation follows a hierarchical organization:
+```
+reference-docs/
+├── cloud/              # Cloud technologies
+│   ├── containers/     # Docker, Kubernetes, etc.
+│   ├── providers/      # AWS, Azure, GCP
+│   ├── serverless/     # Lambda, Azure Functions
+│   └── services/       # Various cloud services
+├── databases/          # Database technologies
+│   ├── document/       # MongoDB, etc.
+│   ├── graph/          # Neo4j, etc.
+│   ├── key-value/      # Redis, etc.
+│   ├── relational/     # MySQL, PostgreSQL, etc.
+│   └── vector/         # Qdrant, etc.
+├── frameworks/         # Cross-cutting frameworks
+│   ├── cross-platform/ # Multi-platform frameworks
+│   └── web/            # Web-specific frameworks
+├── languages/          # Programming languages
+│   ├── javascript/     # JavaScript & related
+│   │   ├── backend/    # Node.js, Express, etc.
+│   │   └── frontend/   # React, Angular, Vue, etc.
+│   ├── python/         # Python & related frameworks
+│   ├── java/           # Java & related frameworks
+│   ├── [other languages]
+└── tools/              # Development tools
+    ├── build/          # Build systems
+    ├── ci-cd/          # CI/CD tools
+    ├── data-pipeline/  # Data processing tools
+    └── testing/        # Testing frameworks
+```
+
+## Technology and Version Identification Process
+1. Start with language identification
+2. Proceed to frameworks within that language
+3. Include databases and cloud services as needed
+4. Look for exact version matches
+5. Consider related tools in the technology ecosystem
+
+## Programming Language Analysis
+Identify the main programming language first, as this determines the entire ecosystem:
+1. Ask directly for the primary language
+2. If multiple languages, determine the dominant one
+3. Match language to the corresponding reference-docs/languages/[language] directory
+4. Prioritize: JavaScript/TypeScript, Python, Java, C#, Go, Ruby, PHP, Rust
+
+## Framework Detection
+For each language, identify the primary framework and version:
+- JavaScript:
+  - Frontend: React, Angular, Vue, Svelte, Next.js (in languages/javascript/frontend/)
+  - Backend: Express, Node.js (in languages/javascript/backend/)
+- Python: Django, Flask, FastAPI (in languages/python/)
+- Java: Spring, Jakarta EE (in languages/java/)
+- C#: ASP.NET Core, WPF (in languages/csharp/)
+
+## Version Importance
+Versions are CRITICALLY important for proper mode selection:
+1. Always ask for specific version numbers
+2. Look for version-specific files (e.g., react-v18.md) within the appropriate directory
+3. If version is unknown, ask for recency (latest, previous major, etc.)
+4. Flag if no matching reference documentation exists
+
+## Project Type Classification
+Classify the project using these categories:
+1. Web Application (frontend, backend, or full-stack)
+2. Mobile Application (native, hybrid, or progressive)
+3. API/Backend Service
+4. Desktop Application
+5. Command Line Tool
+6. Library/Framework
+7. Data Processing/Analysis
+8. AI/ML Project
+
+## Decision Tree for Technology Matching
+
+GIVEN a user's response about their technology stack:
+- IF exact match exists in hierarchical structure → use that version-specific reference
+- IF major version match but minor/patch different → use closest version
+- IF no version match → use ask_perplexity to create new reference documentation
+- IF no framework match → fallback to language-level mode
+
+GIVEN a project with multiple technologies:
+- IF full-stack web → identify both frontend (languages/javascript/frontend/) and backend (languages/javascript/backend/ or appropriate language) frameworks
+- IF microservices → identify primary service technologies
+- IF monolith → identify the core framework first
+- IF databases involved → check databases/ directory for matching documentation
+
+GIVEN ambiguous or incomplete technology information:
+- IF package file available → request it for analysis
+- IF no specifics provided → ask targeted questions about implementation details
+- IF fundamentally unclear → default to general-purpose modes with learning focus

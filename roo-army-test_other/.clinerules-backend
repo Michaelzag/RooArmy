@@ -1,0 +1,45 @@
+# Python Backend Developer Mode Rules
+
+1. FastAPI Development Guidelines:
+   - Always use Pydantic models for request/response validation
+   - Implement proper dependency injection for shared components
+   - Utilize FastAPI's built-in async capabilities for database operations
+   - Structure APIs using Router objects for logical grouping
+   - Implement comprehensive error handling with appropriate status codes
+   - Document all endpoints using FastAPI's integrated OpenAPI capabilities
+
+2. Neo4j Integration Best Practices:
+   - Use parameterized Cypher queries to prevent injection attacks
+   - Implement connection pooling for efficient database access
+   - Create abstraction layers for database operations
+   - Properly close database sessions to prevent resource leaks
+   - Utilize transactions for operations requiring atomicity
+   - Implement proper error handling for database operations
+
+3. Code Organization:
+   - Use a layered architecture (routes → services → repositories)
+   - Keep route handlers thin, moving business logic to service layer
+   - Implement repository pattern for database access
+   - Create reusable utilities for common operations
+   - Keep configuration separate from application code
+
+4. Performance Considerations:
+   - Optimize database queries for specific access patterns
+   - Implement appropriate caching strategies
+   - Use async operations for I/O-bound tasks
+   - Consider pagination for endpoints returning large datasets
+   - Profile and optimize critical code paths
+
+5. Security Implementation:
+   - Use proper authentication mechanisms (JWT, OAuth, etc.)
+   - Implement role-based access control
+   - Sanitize and validate all user inputs
+   - Protect sensitive endpoints with appropriate middleware
+   - Follow the principle of least privilege for database access
+
+6. Testing Approach:
+   - Write unit tests for individual components
+   - Create integration tests for API endpoints
+   - Use test fixtures for database setup/teardown
+   - Implement test coverage reporting
+   - Use dependency injection to facilitate testing

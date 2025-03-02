@@ -1,0 +1,117 @@
+{
+  "name": "RooArmy Custom Modes Collection",
+  "version": "1.0.0",
+  "description": "A comprehensive collection of professional custom modes for Roo AI Assistant, organized by functional categories",
+  "categories": [
+    {
+      "id": "configuration",
+      "name": "Configuration and Assessment",
+      "file": "01-configuration.json",
+      "modes": ["commander"]
+    },
+    {
+      "id": "planning-design",
+      "name": "Planning and Design",
+      "file": "02-planning-design.json",
+      "modes": ["architect", "ui", "api"]
+    },
+    {
+      "id": "implementation",
+      "name": "Implementation",
+      "file": "03-implementation.json",
+      "modes": ["engineer", "frontend", "backend", "mobile", "dba"]
+    },
+    {
+      "id": "quality-security",
+      "name": "Quality and Security",
+      "file": "04-quality-security.json",
+      "modes": ["qa", "security", "perf"]
+    },
+    {
+      "id": "operations",
+      "name": "Operations",
+      "file": "05-operations.json",
+      "modes": ["devops", "sre", "cloud"]
+    },
+    {
+      "id": "documentation",
+      "name": "Documentation and Support",
+      "file": "06-documentation.json",
+      "modes": ["writer", "learn", "analyst"]
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript Frameworks",
+      "file": "10-javascript.json",
+      "markdownTemplate": "10-javascript.md",
+      "referenceDirectory": "reference-docs",
+      "versionedTemplates": [
+        "react-v17.md",
+        "react-v18.md",
+        "angular-v16.md",
+        "vue-v3.md",
+        "next-js-v13.md",
+        "svelte-v3.md"
+      ],
+      "description": "Technology-specific modes for popular JavaScript frameworks"
+    },
+    {
+      "id": "python",
+      "name": "Python Frameworks",
+      "file": "11-python.json",
+      "markdownTemplate": "11-python.md",
+      "referenceDirectory": "reference-docs",
+      "versionedTemplates": [
+        "django-v4.2.md",
+        "fastapi-v0.100.md",
+        "tensorflow-v2.12.md",
+        "pandas-v2.0.md",
+        "scikit-learn-v1.2.md"
+      ],
+      "description": "Technology-specific modes for popular Python frameworks and libraries"
+    },
+    {
+      "id": "cloud",
+      "name": "Cloud Platforms",
+      "file": "12-cloud-platforms.json",
+      "markdownTemplate": "12-cloud-platforms.md",
+      "referenceDirectory": "reference-docs",
+      "versionedTemplates": [
+        "aws-sdk-v3.md",
+        "azure-v2023.md",
+        "gcp-v2023.md"
+      ],
+      "description": "Technology-specific modes for major cloud platforms"
+    },
+    {
+      "id": "mobile",
+      "name": "Mobile Platforms",
+      "file": "13-mobile-platforms.json",
+      "markdownTemplate": "13-mobile-platforms.md",
+      "referenceDirectory": "reference-docs",
+      "versionedTemplates": [
+        "flutter-v3.md",
+        "react-native-v0.70.md",
+        "xamarin-v5.md",
+        "ios-swift-v5.md",
+        "android-kotlin-v1.8.md"
+      ],
+      "description": "Technology-specific modes for mobile development frameworks"
+    },
+    {
+      "id": "user-submissions",
+      "name": "User-Submitted Modes",
+      "file": "99-user-sumissions.json",
+      "modes": ["jest-test-engineer", "vibemode", "documentation-writer", "user-story-creator", "junior-reviewer", "senior-reviewer"]
+    }
+  ],
+  "usage": {
+    "description": "This collection provides professional role definitions for Roo. The RooCommander mode can assess project needs and recommend appropriate modes from this collection, including both role-based and technology-specific modes.",
+    "commander_instructions": "To use the RooCommander to configure custom modes for your project:\n1. Add the Commander mode to your .roomodes file\n2. Switch to the Commander mode\n3. Ask for help configuring custom modes for your project\n4. Answer the assessment questions about your role needs and technologies\n5. Review and approve the recommended configuration",
+    "individual_usage": "To use individual modes directly:\n1. Browse the categories to find appropriate modes for your needs\n2. Add the selected modes to your .roomodes file\n3. Switch between modes as your development tasks change",
+    "tech_specific_modes": "For technology-specific modes:\n1. RooCommander can dynamically create modes based on markdown templates\n2. Tell RooCommander which technologies your project uses (React, Django, AWS, etc.)\n3. Specify version requirements when applicable (React v18, Django v4.2, etc.)\n4. The commander will generate appropriate custom modes with version-specific specialized knowledge"
+  },
+  "workflow": {
+    "description": "For a typical development workflow, modes can be used in this sequence:\n1. Commander → Assessment and configuration\n2. Architect → System design\n3. UI/API Designer → Interface design\n4. Engineer → Implementation\n5. QA → Testing\n6. DevOps/SRE → Deployment\n7. Writer → Documentation\n\nSpecialized roles can be used as needed throughout the process."
+  }
+}

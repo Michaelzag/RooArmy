@@ -1,0 +1,37 @@
+# Milestone Manager Rules
+
+## Milestone Organization Guidelines
+
+1. **Directory Structure**:
+   - Maintain sequential milestone numbering (1, 2, 3...)
+   - Use descriptive directory names reflecting milestone purpose
+   - Create milestone directories only inside handoffs/
+   - Keep all 0-prefixed summary documents within milestone directories
+
+2. **Handoff Integration**:
+   - Verify recent handoffs exist before creating milestones
+   - Create a final handoff when completing a feature or phase
+   - Preserve all handoff content during organization
+   - Move handoffs as intact documents without content modification
+
+3. **Summary Document Quality**:
+   - Create concise yet comprehensive milestone summaries
+   - Distill essential information from related handoffs
+   - Focus on architectural decisions and key learning points
+   - Document reusable patterns for future reference
+   - Prioritize information with long-term project value
+
+## Process Orchestration
+
+1. **Prompt Template Usage**:
+   - Reference CM-create-milestone.md for structured milestone creation
+   - Consult 3-milestone-scripts.md for safe file reorganization
+   - Use RM-resume-milestone.md when continuing from milestones
+   - Direct users to create handoffs with CH-create-handoff.md when needed
+
+2. **Safe File Operations**:
+   - Use provided scripts based on environment (Node.js, Python, Bash, PowerShell)
+   - Verify successful file movement after operations
+   - Ensure proper permissions on created directories and files
+   - Validate summary documents contain all required sections
+   - Follow established naming conventions consistently

@@ -1,0 +1,95 @@
+REFERENCE DOCUMENTATION MANAGEMENT
+
+You implement a systematic approach to reference documentation management using the hierarchical directory structure:
+
+## Reference Documentation Navigation
+Navigate the structured reference documentation directory:
+```
+reference-docs/
+├── cloud/              # Cloud technologies
+│   ├── containers/     # Docker, Kubernetes, etc.
+│   ├── providers/      # AWS, Azure, GCP
+│   ├── serverless/     # Lambda, Azure Functions
+│   └── services/       # Various cloud services
+├── databases/          # Database technologies
+│   ├── document/       # MongoDB, etc.
+│   ├── graph/          # Neo4j, etc.
+│   ├── key-value/      # Redis, etc.
+│   ├── relational/     # MySQL, PostgreSQL, etc.
+│   └── vector/         # Qdrant, etc.
+├── frameworks/         # Cross-cutting frameworks
+│   ├── cross-platform/ # Multi-platform frameworks
+│   └── web/            # Web-specific frameworks
+├── languages/          # Programming languages
+│   ├── javascript/     # JavaScript & related
+│   │   ├── backend/    # Node.js, Express, etc.
+│   │   └── frontend/   # React, Angular, Vue, etc.
+│   ├── python/         # Python & related frameworks
+│   ├── java/           # Java & related frameworks
+│   ├── [other languages]
+└── tools/              # Development tools
+    ├── build/          # Build systems
+    ├── ci-cd/          # CI/CD tools
+    ├── data-pipeline/  # Data processing tools
+    └── testing/        # Testing frameworks
+```
+
+## Reference Documentation Detection
+1. Determine the appropriate path based on technology type:
+   - Languages: reference-docs/languages/[language]/
+   - Frameworks: reference-docs/languages/[language]/[frontend|backend]/ or reference-docs/frameworks/
+   - Databases: reference-docs/databases/[type]/
+   - Cloud: reference-docs/cloud/[category]/
+   - Tools: reference-docs/tools/[category]/
+
+2. Look for version-specific files within that path:
+   - Format: [technology]-v[version].md
+   - Example: reference-docs/languages/javascript/frontend/react/react-v18.md
+
+3. Prioritize documentation needs:
+   - Core language/framework components are highest priority
+   - Databases and cloud services are medium priority
+   - Utility libraries and tools are lower priority
+
+## Documentation Creation Workflow
+When reference documentation is missing:
+
+1. Check if technology is common enough to warrant documentation
+2. Determine correct location in the hierarchical structure
+3. Offer documentation creation options:
+   - Automatic (using ask_perplexity)
+   - Manual creation with guidance
+   - Skip for minor dependencies
+
+4. For automatic creation:
+   a. Gather key details about technology version
+   b. Use specified external tools to generate documentation
+   c. Validate structure matches reference-docs schema
+   d. Store in appropriate location in the hierarchy
+
+5. For manual creation:
+   a. Provide schema template from 00-schema.md
+   b. Guide user through section completion
+   c. Validate final documentation
+   d. Advise on correct placement in directory structure
+
+## Version Handling Protocol
+For managing version-specific documentation:
+
+1. Exact version match → use directly
+   - Example: react-v18.md for React 18.0.0
+2. Close version match → use with version difference warning
+   - Example: react-v18.md for React 18.2.0
+3. Major version mismatch → recommend creating new documentation
+   - Example: Need react-v19.md when only react-v18.md exists
+4. Unknown version → request version identification
+   - Use package files to determine version where possible
+
+## Documentation Quality Assessment
+Evaluate documentation quality using these criteria:
+
+1. Comprehensiveness (covers all schema sections)
+2. Version-specificity (contains version-specific details)
+3. Technical accuracy (correct technical information)
+4. Completeness (detailed in all required areas)
+5. Proper placement within hierarchical structure

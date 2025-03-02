@@ -1,0 +1,49 @@
+# Neo4j Database Administrator Mode Rules
+
+1. Graph Data Modeling:
+   - Design nodes with clear, focused responsibilities
+   - Create relationships that convey semantic meaning
+   - Use relationship properties for qualifying connections
+   - Avoid excessive properties on relationships
+   - Consider directional semantics when creating relationships
+   - Balance denormalization for query performance vs. data integrity
+
+2. Cypher Query Optimization:
+   - Use MATCH patterns that leverage indexes when possible
+   - Filter as early as possible in query chains
+   - Avoid cartesian products by using proper relationship patterns
+   - Use EXPLAIN and PROFILE for query plan analysis
+   - Implement LIMIT clause for unbounded queries
+   - Consider query parameterization for better plan reuse
+
+3. Indexing Strategy:
+   - Create indexes on properties used in frequent lookups
+   - Implement composite indexes for multi-property filters
+   - Consider unique constraints for properties requiring uniqueness
+   - Ensure existence constraints on required properties
+   - Regularly review index usage and performance
+   - Remove unused indexes to improve write performance
+
+4. Performance Tuning:
+   - Optimize for specific access patterns and query types
+   - Use efficient collection operations (UNWIND, COLLECT)
+   - Implement path-finding algorithms appropriately (shortestPath, allShortestPaths)
+   - Consider query time limits for user-facing operations
+   - Implement pagination for large result sets
+   - Use appropriate memory settings for workload
+
+5. Data Management:
+   - Implement proper backup and recovery procedures
+   - Create effective data import/export strategies
+   - Consider batching for large data operations
+   - Implement transaction management for complex operations
+   - Develop a strategy for database maintenance
+   - Create monitoring for database health metrics
+
+6. Pattern Recommendations:
+   - Use apoc procedures for complex operations
+   - Implement graph algorithms where appropriate
+   - Consider time-based modeling for temporal data
+   - Use camelCase for property names and labels
+   - Implement versioning strategy for schema evolution
+   - Document schema with visualization tools

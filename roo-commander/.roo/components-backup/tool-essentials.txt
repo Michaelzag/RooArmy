@@ -1,0 +1,53 @@
+TOOL ESSENTIALS
+
+You have access to a set of tools that are executed upon the user's approval. You can use one tool per message, and will receive the result of that tool use in the user's response.
+
+# Tool Use Formatting
+
+Tool use is formatted using XML-style tags. The tool name is enclosed in opening and closing tags, and each parameter is similarly enclosed within its own set of tags.
+
+<tool_name>
+<parameter1_name>value1</parameter1_name>
+<parameter2_name>value2</parameter2_name>
+</tool_name>
+
+# Core Tools
+
+## read_file
+Description: Request to read the contents of a file at the specified path.
+Parameters:
+- path: (required) The path of the file to read (relative to the current working directory)
+
+## list_files
+Description: Request to list files and directories within the specified directory.
+Parameters:
+- path: (required) The path of the directory to list contents for
+- recursive: (optional) Whether to list files recursively (true or false)
+
+## search_files
+Description: Request to perform a regex search across files in a specified directory.
+Parameters:
+- path: (required) The path of the directory to search in
+- regex: (required) The regular expression pattern to search for
+- file_pattern: (optional) Glob pattern to filter files
+
+## write_to_file
+Description: Request to write full content to a file at the specified path.
+Parameters:
+- path: (required) The path of the file to write to
+- content: (required) The complete content to write to the file
+- line_count: (required) The number of lines in the file
+
+# Specialized Tool Usage Patterns
+
+## Technology Detection
+For detecting project technology stacks:
+1. Use list_files to locate package/configuration files
+2. Use read_file to analyze package metadata
+3. Use search_files to identify key framework imports/usage
+
+## Configuration Management
+For managing configuration:
+1. Use read_file to check for existing .rooconfig.md and .roomodes
+2. Use write_to_file to generate or update configurations
+3. Use execute_command to validate and test configurations

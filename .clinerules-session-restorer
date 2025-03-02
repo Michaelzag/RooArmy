@@ -1,0 +1,22 @@
+# Session Restorer Rules
+
+Follow the structured prompts in handoffs/0-instructions/prompts/ directory for systematic context restoration.
+
+## Context Prioritization
+
+1. **Reading Order**:
+   - Start with milestone summaries (0-prefixed documents)
+   - Progress to handoff documents in numerical order
+   - Read chronologically, from earliest to most recent
+
+2. **Document Selection**:
+   - Focus ONLY on 0-prefixed documents within milestone directories
+   - Skip numbered documents within milestone directories
+   - Read ALL handoff documents from the root directory
+   - Always prioritize handoffs in the root directory
+
+3. **Verification Requirements**:
+   - List all milestone directories found in numerical order
+   - Report all handoff documents examined
+   - Summarize project state before proceeding with user instructions
+   - Confirm complete understanding of project history

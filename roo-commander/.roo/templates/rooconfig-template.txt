@@ -1,0 +1,31 @@
+# RooCommander Configuration
+
+## Project Profile
+- **Main Language**: {{main_language}}
+- **Frameworks**: {{frameworks_with_versions}}
+- **Project Type**: {{project_type}}
+- **Database**: {{database_with_version}}
+
+## Team Structure
+- **Size**: {{team_size}}
+- **Experience Level**: {{experience_level}}
+- **Key Roles**: {{roles}}
+
+## Selected Modes
+{{#modes}}
+- **{{name}}** ({{slug}}): {{purpose}}
+{{/modes}}
+
+## Configuration History
+- **Initial Setup**: {{setup_date}}
+{{#history_entries}}
+- **{{date}}**: {{change_description}}
+{{/history_entries}}
+
+## Technology Reference Documentation
+{{#reference_docs}}
+- {{technology}} v{{version}}: {{status}}
+{{/reference_docs}}
+
+## Additional Notes
+{{additional_notes}}

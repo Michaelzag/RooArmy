@@ -1,0 +1,17 @@
+# FastAPI and web server
+fastapi>=0.104.0
+uvicorn>=0.23.2
+python-dotenv>=1.0.0
+pydantic>=2.4.2
+pydantic-settings>=2.0.3
+
+# Neo4j integration
+neo4j>=5.13.0
+
+# Authentication
+python-jose>=3.3.0
+passlib>=1.7.4
+bcrypt>=4.0.1
+
+# Utility
+httpx>=0.25.0

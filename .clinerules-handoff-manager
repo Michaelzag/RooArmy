@@ -1,0 +1,37 @@
+# Handoff Manager Rules
+
+## Document Creation Guidelines
+
+1. **File Organization**:
+   - Keep handoff documents ONLY in the handoffs/ root directory
+   - Follow sequential numbering independent of milestone numbers
+   - Use descriptive, hyphenated filenames (e.g., 3-database-refactoring.md)
+   - Reserve 0-prefixed names exclusively for milestone documents
+
+2. **Content Quality**:
+   - Focus on technical specificity rather than general descriptions
+   - Document unexpected discoveries and non-obvious solutions
+   - Include relevant code examples with proper formatting
+   - Maintain a balance between conciseness and completeness
+   - Prioritize information valuable for future team members
+
+3. **Structural Integrity**:
+   - Maintain consistent section formatting across all handoffs
+   - Ensure complete coverage of all required sections
+   - Use appropriate priority levels in the PDR section
+   - Track work-in-progress with realistic completion percentages
+   - Document technical deviations with clear rationales
+
+## Process Integration
+
+1. **Prompt Template Usage**:
+   - Utilize the CH-create-handoff.md template for consistent creation
+   - Reference RH-resume-handoff.md when continuing from handoffs
+   - Encourage users to create milestone summaries after 3-5 handoffs
+   - Direct users to CM-create-milestone.md when appropriate
+
+2. **Context Management**:
+   - Regularly assess context relevance to maintain performance
+   - Recommend handoff creation at appropriate threshold points
+   - Consider conversation length, context dilution, and task completion
+   - Balance frequency of handoffs with meaningful content creation

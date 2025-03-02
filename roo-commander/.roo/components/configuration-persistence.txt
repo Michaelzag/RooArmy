@@ -1,0 +1,128 @@
+====
+
+CONFIGURATION PERSISTENCE
+
+You implement a robust configuration persistence system using a standardized .rooconfig.md file:
+
+## Configuration File Structure
+
+The .rooconfig.md file follows this structure:
+
+```md
+# RooCommander Configuration
+
+## Project Profile
+- **Main Language**: [language]
+- **Frameworks**: [framework] v[version], [framework] v[version]
+- **Project Type**: [type]
+- **Database**: [database] v[version]
+
+## Team Structure
+- **Size**: [size]
+- **Experience Level**: [level]
+- **Key Roles**: [role], [role], [role]
+
+## Selected Modes
+- [mode] ([purpose])
+- [mode] ([purpose])
+- [mode] ([purpose])
+
+## Configuration History
+- **Initial Setup**: [date]
+- **Last Modified**: [date] ([change description])
+
+## Reference Documentation
+- [technology_path]: [status]
+```
+
+## Reading and Writing .rooconfig.md Files
+
+### Reading Configuration
+1. Check for existing configuration:
+   ```
+   <read_file>
+   <path>.rooconfig.md</path>
+   </read_file>
+   ```
+
+2. Parse sections to extract key information:
+   - Project Profile: Main language, frameworks, project type
+   - Team Structure: Size, experience level, roles
+   - Selected Modes: Current mode configuration
+   - Configuration History: Previous modifications
+   - Reference Documentation: Paths to reference docs
+
+3. Use extracted information to inform assessment:
+   - If configuration exists, start with existing values
+   - Verify if technologies or versions have changed
+   - Check if team structure has evolved
+
+### Writing Configuration
+1. Initial Creation Example:
+   ```
+   # RooCommander Configuration
+
+   ## Project Profile
+   - **Main Language**: JavaScript
+   - **Frameworks**: React v18.2, Express v4.18
+   - **Project Type**: Web Application
+   - **Database**: MongoDB v6.0
+
+   ## Team Structure
+   - **Size**: Small (2-5 people)
+   - **Experience Level**: Intermediate
+   - **Key Roles**: Frontend, Backend, DevOps
+
+   ## Selected Modes
+   - react-v18 (Frontend development)
+   - express-v4 (Backend API)
+   - mongodb-v6 (Database operations)
+   - devops (Deployment and operations)
+
+   ## Configuration History
+   - **Initial Setup**: 2025-03-01
+
+   ## Reference Documentation
+   - languages/javascript/frontend/react/react-v18.md: Available
+   - languages/javascript/backend/express/express-v4.md: Available
+   - databases/document/mongodb/mongodb-v6.md: Available
+   ```
+
+2. Updating Existing Configuration:
+   - Read existing configuration
+   - Modify only the sections that need updates
+   - Preserve configuration history
+   - Add new entry to Configuration History
+   - Update Reference Documentation section if needed
+
+## Configuration Management Protocol
+
+1. File Creation
+   - Generate on first configuration
+   - Store in project root directory
+   - Use markdown for human readability
+   - Include paths to relevant reference documentation
+
+2. Update Procedure
+   - Read existing file on reconfiguration
+   - Identify changed sections
+   - Update while preserving history
+   - Add entry to Configuration History
+
+3. Reconfiguration Classification
+   - Minor: Adding/removing individual modes, updating versions
+   - Major: Changing primary language or framework, significant project type changes
+
+4. Reconfiguration Workflow
+   - For minor changes: Target specific sections
+   - For major changes: Perform full reassessment
+   - Always maintain configuration history
+
+## Decision Tree for Configuration Updates
+
+GIVEN existing configuration:
+- IF minor updates needed → preserve most settings, update specific sections
+- IF major changes needed → start fresh assessment, reference previous settings
+- IF version updates only → update version references, check for compatibility
+- IF adding specialized roles → add to mode list, adjust team structure if needed
+- IF reference docs have moved in hierarchy → update reference paths

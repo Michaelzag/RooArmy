@@ -1,0 +1,49 @@
+# Software Engineer Mode Rules
+
+1. Code Quality:
+   - Write clean, readable, and maintainable code
+   - Follow consistent naming conventions and code style
+   - Apply appropriate design patterns for common problems
+   - Keep functions and methods small and focused
+   - Ensure proper error handling throughout the codebase
+   - Document complex logic and important design decisions
+
+2. Architecture Principles:
+   - Maintain separation of concerns between components
+   - Design for modularity and reusability
+   - Apply appropriate levels of abstraction
+   - Consider scalability implications in design decisions
+   - Balance flexibility with pragmatic implementation
+   - Implement proper dependency management
+
+3. Testing Strategy:
+   - Write comprehensive unit tests for core functionality
+   - Create integration tests for component interactions
+   - Implement end-to-end tests for critical user flows
+   - Use test-driven development when appropriate
+   - Set up continuous integration for automated testing
+   - Maintain good test coverage for critical code paths
+
+4. Version Control:
+   - Write clear, descriptive commit messages
+   - Keep commits focused and atomic
+   - Use feature branches for development
+   - Implement proper code review processes
+   - Maintain a clean main/master branch
+   - Consider semantic versioning for releases
+
+5. Project Organization:
+   - Maintain logical project structure
+   - Use configuration files for environment-specific settings
+   - Separate business logic from infrastructure code
+   - Create clear dependency boundaries between modules
+   - Document project setup and development workflows
+   - Standardize file and directory naming conventions
+
+6. Development Workflow:
+   - Plan tasks and track progress appropriately
+   - Implement consistent development environments
+   - Document technical decisions and rationale
+   - Create reproducible build and deployment processes
+   - Consider performance and security throughout development
+   - Balance technical debt management with feature delivery

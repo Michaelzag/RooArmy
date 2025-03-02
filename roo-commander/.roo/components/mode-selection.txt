@@ -1,0 +1,62 @@
+====
+
+MODE SELECTION LOGIC
+
+You implement a sophisticated mode selection algorithm that balances technology needs, team structure, and project requirements:
+
+## Selection Algorithm
+
+1. Essential Modes
+   - Commander mode is always included
+   - At least one implementation mode is required
+
+2. Technology-Specific Modes
+   - Include language-specific modes based on primary language
+   - Include framework-specific modes based on frameworks identified
+   - Include database modes based on data storage identified
+   - Include platform modes based on deployment targets
+
+3. Role-Based Modes
+   - Add role modes based on team composition
+   - Add specialized modes based on development focus
+   - Add operation modes based on deployment needs
+
+4. Experience Adjustments
+   - Modify selection based on team experience level
+   - Add learning modes for beginner/mixed teams
+   - Remove complex modes for beginner teams
+
+5. Team Size Constraints
+   - Solo: Maximum 5 modes
+   - Small: Maximum 7 modes
+   - Medium: Maximum 10 modes
+   - Large: Maximum 15 modes
+
+6. Mode Scoring System
+   - Base score from team/project match
+   - Technology relevance multiplier
+   - Experience appropriateness factor
+   - Only modes above threshold (3) are included
+   - When limiting, prioritize by score
+
+## Mode Customization Protocol
+
+For each selected mode:
+1. Review mode's default roleDefinition
+2. Inject technology-specific context from hierarchical reference docs
+3. Update groups/permissions as needed
+4. Append technology-specific customInstructions
+5. Document modifications in configuration file
+
+## Mode Selection Decision Tree
+
+GIVEN complete assessment results:
+- COMPUTE initial scores for all available modes
+- APPLY technology-specific adjustments based on reference docs
+- APPLY team-based adjustments
+- APPLY experience-level modifications
+- FILTER by threshold score
+- SORT by priority
+- LIMIT based on team size
+- ENSURE commander mode is included
+- ENSURE at least one implementation mode

@@ -1,0 +1,352 @@
+{
+  "assessment": {
+    "initial_questions": [
+      {
+        "id": "project_type",
+        "question": "What type of project are you working on?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "web", "label": "Web Application"},
+          {"value": "mobile", "label": "Mobile Application"},
+          {"value": "service", "label": "Backend Service"},
+          {"value": "cli", "label": "Command Line Tool"},
+          {"value": "library", "label": "Library/Framework"},
+          {"value": "enterprise", "label": "Enterprise System"}
+        ],
+        "follow_ups": {
+          "web": ["frontend_framework", "backend_tech", "team_size", "experience_level"],
+          "mobile": ["mobile_platform", "team_size", "experience_level"],
+          "service": ["database", "team_size", "experience_level"],
+          "cli": ["language", "team_size", "experience_level"],
+          "library": ["language", "team_size", "experience_level"],
+          "enterprise": ["architecture", "team_size", "experience_level"]
+        }
+      },
+      {
+        "id": "team_size",
+        "question": "How many people are on your development team?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "solo", "label": "Just me"},
+          {"value": "small", "label": "2-5 people"},
+          {"value": "medium", "label": "6-15 people"},
+          {"value": "large", "label": "More than 15 people"}
+        ],
+        "follow_ups": {
+          "solo": ["experience_level", "development_focus"],
+          "small": ["team_roles", "experience_level"],
+          "medium": ["team_roles", "experience_level", "development_methodology"],
+          "large": ["team_roles", "experience_level", "development_methodology", "specialized_needs"]
+        }
+      },
+      {
+        "id": "experience_level",
+        "question": "What is the overall experience level with this technology stack?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "beginner", "label": "Beginner (learning the basics)"},
+          {"value": "intermediate", "label": "Intermediate (some experience)"},
+          {"value": "advanced", "label": "Advanced (experienced developers)"},
+          {"value": "mixed", "label": "Mixed (various experience levels)"}
+        ],
+        "follow_ups": {
+          "beginner": ["learning_focus"],
+          "intermediate": ["development_focus"],
+          "advanced": ["development_focus", "specialized_needs"],
+          "mixed": ["development_focus", "learning_support"]
+        }
+      }
+    ],
+    "follow_up_questions": [
+      {
+        "id": "frontend_framework",
+        "question": "Which frontend technology are you using?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "react", "label": "React"},
+          {"value": "vue", "label": "Vue.js"},
+          {"value": "angular", "label": "Angular"},
+          {"value": "vanilla", "label": "Vanilla JS/HTML/CSS"},
+          {"value": "other", "label": "Other"}
+        ],
+        "mode_impacts": {
+          "react": ["frontend+3", "ui+2"],
+          "vue": ["frontend+3", "ui+2"],
+          "angular": ["frontend+3", "ui+2"],
+          "vanilla": ["frontend+2"],
+          "other": ["frontend+2"]
+        }
+      },
+      {
+        "id": "backend_tech",
+        "question": "Which backend technology are you using?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "node", "label": "Node.js"},
+          {"value": "python", "label": "Python"},
+          {"value": "java", "label": "Java"},
+          {"value": "dotnet", "label": ".NET"},
+          {"value": "php", "label": "PHP"},
+          {"value": "go", "label": "Go"},
+          {"value": "ruby", "label": "Ruby"},
+          {"value": "other", "label": "Other"}
+        ],
+        "mode_impacts": {
+          "node": ["backend+3"],
+          "python": ["backend+3"],
+          "java": ["backend+3"],
+          "dotnet": ["backend+3"],
+          "php": ["backend+3"],
+          "go": ["backend+3"],
+          "ruby": ["backend+3"],
+          "other": ["backend+2"]
+        }
+      },
+      {
+        "id": "mobile_platform",
+        "question": "Which mobile platform are you developing for?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "react_native", "label": "React Native"},
+          {"value": "flutter", "label": "Flutter"},
+          {"value": "native_ios", "label": "Native iOS"},
+          {"value": "native_android", "label": "Native Android"},
+          {"value": "pwa", "label": "Progressive Web App"},
+          {"value": "other", "label": "Other"}
+        ],
+        "mode_impacts": {
+          "react_native": ["frontend+3"],
+          "flutter": ["frontend+3"],
+          "native_ios": ["frontend+3"],
+          "native_android": ["frontend+3"],
+          "pwa": ["frontend+3", "a11y+1"],
+          "other": ["frontend+2"]
+        }
+      },
+      {
+        "id": "database",
+        "question": "Which database technology are you using?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "sql", "label": "SQL (MySQL, PostgreSQL, etc.)"},
+          {"value": "nosql", "label": "NoSQL (MongoDB, DynamoDB, etc.)"},
+          {"value": "graph", "label": "Graph Database"},
+          {"value": "hybrid", "label": "Multiple database types"},
+          {"value": "none", "label": "No database"}
+        ],
+        "mode_impacts": {
+          "sql": ["db+3", "backend+1"],
+          "nosql": ["db+3", "backend+1"],
+          "graph": ["db+3", "backend+1"],
+          "hybrid": ["db+3", "backend+1"],
+          "none": []
+        }
+      },
+      {
+        "id": "language",
+        "question": "Which primary programming language are you using?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "js", "label": "JavaScript/TypeScript"},
+          {"value": "python", "label": "Python"},
+          {"value": "java", "label": "Java"},
+          {"value": "csharp", "label": "C#"},
+          {"value": "go", "label": "Go"},
+          {"value": "ruby", "label": "Ruby"},
+          {"value": "other", "label": "Other"}
+        ],
+        "mode_impacts": {
+          "js": ["dev+2"],
+          "python": ["dev+2"],
+          "java": ["dev+2"],
+          "csharp": ["dev+2"],
+          "go": ["dev+2"],
+          "ruby": ["dev+2"],
+          "other": ["dev+2"]
+        }
+      },
+      {
+        "id": "architecture",
+        "question": "What is your primary architectural approach?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "microservices", "label": "Microservices"},
+          {"value": "monolith", "label": "Monolithic"},
+          {"value": "serverless", "label": "Serverless"},
+          {"value": "event_driven", "label": "Event-driven"},
+          {"value": "hybrid", "label": "Hybrid approach"}
+        ],
+        "mode_impacts": {
+          "microservices": ["arch+3", "devops+2"],
+          "monolith": ["arch+2"],
+          "serverless": ["arch+3", "devops+2"],
+          "event_driven": ["arch+3", "backend+1"],
+          "hybrid": ["arch+3", "devops+1"]
+        }
+      },
+      {
+        "id": "team_roles",
+        "question": "Which specific roles exist on your team? (select all that apply)",
+        "type": "multiple_select",
+        "options": [
+          {"value": "frontend", "label": "Frontend Developers"},
+          {"value": "backend", "label": "Backend Developers"},
+          {"value": "fullstack", "label": "Full-stack Developers"},
+          {"value": "designer", "label": "UI/UX Designers"},
+          {"value": "devops", "label": "DevOps Engineers"},
+          {"value": "qa", "label": "QA/Testing Specialists"},
+          {"value": "pm", "label": "Project Managers"}
+        ],
+        "mode_impacts": {
+          "frontend": ["frontend+1"],
+          "backend": ["backend+1"],
+          "fullstack": ["dev+1"],
+          "designer": ["ui+2"],
+          "devops": ["devops+2"],
+          "qa": ["test+2"],
+          "pm": ["pm+2"]
+        }
+      },
+      {
+        "id": "development_methodology",
+        "question": "Which development methodology do you follow?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "agile", "label": "Agile/Scrum"},
+          {"value": "kanban", "label": "Kanban"},
+          {"value": "waterfall", "label": "Waterfall"},
+          {"value": "hybrid", "label": "Hybrid approach"},
+          {"value": "none", "label": "No formal methodology"}
+        ],
+        "mode_impacts": {
+          "agile": ["pm+2"],
+          "kanban": ["pm+2"],
+          "waterfall": ["pm+2", "docs+1"],
+          "hybrid": ["pm+2"],
+          "none": []
+        }
+      },
+      {
+        "id": "development_focus",
+        "question": "What are your primary development focuses? (select all that apply)",
+        "type": "multiple_select",
+        "options": [
+          {"value": "features", "label": "Implementing new features"},
+          {"value": "bugs", "label": "Fixing bugs"},
+          {"value": "refactoring", "label": "Code refactoring/improvement"},
+          {"value": "performance", "label": "Performance optimization"},
+          {"value": "security", "label": "Security improvements"},
+          {"value": "accessibility", "label": "Accessibility enhancements"}
+        ],
+        "mode_impacts": {
+          "features": ["dev+3", "arch+1"],
+          "bugs": ["debug+3", "test+2"],
+          "refactoring": ["refactor+3", "arch+2"],
+          "performance": ["perf+3", "dev+1"],
+          "security": ["security+3"],
+          "accessibility": ["a11y+3", "frontend+1"]
+        }
+      },
+      {
+        "id": "learning_focus",
+        "question": "What aspects of development are you most interested in learning?",
+        "type": "multiple_select",
+        "options": [
+          {"value": "basics", "label": "Programming basics"},
+          {"value": "frontend", "label": "Frontend development"},
+          {"value": "backend", "label": "Backend development"},
+          {"value": "fullstack", "label": "Full-stack development"},
+          {"value": "devops", "label": "DevOps and deployment"},
+          {"value": "mobile", "label": "Mobile development"}
+        ],
+        "mode_impacts": {
+          "basics": ["learn+3", "nocode+2"],
+          "frontend": ["learn+3", "frontend+2"],
+          "backend": ["learn+3", "backend+2"],
+          "fullstack": ["learn+3", "dev+2"],
+          "devops": ["learn+3", "devops+1"],
+          "mobile": ["learn+3", "frontend+2"]
+        }
+      },
+      {
+        "id": "learning_support",
+        "question": "Do you need learning support for team members?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "yes", "label": "Yes, we have team members learning new technologies"},
+          {"value": "no", "label": "No, everyone is familiar with our tech stack"}
+        ],
+        "mode_impacts": {
+          "yes": ["learn+3"],
+          "no": []
+        }
+      },
+      {
+        "id": "specialized_needs",
+        "question": "Do you have any specialized needs? (select all that apply)",
+        "type": "multiple_select",
+        "options": [
+          {"value": "cicd", "label": "CI/CD and Deployment Automation"},
+          {"value": "docs", "label": "Documentation Generation"},
+          {"value": "testing", "label": "Comprehensive Testing"},
+          {"value": "analytics", "label": "Data Analytics Integration"},
+          {"value": "monitoring", "label": "Monitoring and Logging"},
+          {"value": "compliance", "label": "Regulatory Compliance"},
+          {"value": "none", "label": "None of the above"}
+        ],
+        "mode_impacts": {
+          "cicd": ["devops+3"],
+          "docs": ["docs+3", "arch+1"],
+          "testing": ["test+3"],
+          "analytics": ["db+2"],
+          "monitoring": ["devops+2", "debug+1"],
+          "compliance": ["security+2", "docs+1"],
+          "none": []
+        }
+      }
+    ],
+    "mode_selection_logic": {
+      "threshold": 3,
+      "essential_modes": ["dev"],
+      "mode_groups": {
+        "planning": ["arch", "pm"],
+        "implementation": ["dev", "frontend", "backend"],
+        "quality": ["test", "debug", "security"],
+        "specialized": ["devops", "docs", "a11y", "perf"],
+        "learning": ["learn", "nocode"]
+      },
+      "experience_mappings": {
+        "beginner": {
+          "add": ["nocode", "learn"],
+          "remove": ["arch", "security", "perf"]
+        },
+        "intermediate": {
+          "add": [],
+          "remove": []
+        },
+        "advanced": {
+          "add": [],
+          "remove": ["nocode"]
+        },
+        "mixed": {
+          "add": ["learn"],
+          "remove": []
+        }
+      },
+      "team_size_mappings": {
+        "solo": {
+          "max_modes": 5
+        },
+        "small": {
+          "max_modes": 7
+        },
+        "medium": {
+          "max_modes": 10
+        },
+        "large": {
+          "max_modes": 15
+        }
+      }
+    }
+  }
+}
