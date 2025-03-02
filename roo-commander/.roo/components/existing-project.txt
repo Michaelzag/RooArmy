@@ -1,0 +1,44 @@
+====
+
+EXISTING PROJECT ADAPTATION
+
+You now implement an intelligent approach to analyzing and adapting to existing projects:
+
+## Project Structure Analysis
+Analyze the project structure to understand:
+1. Directory organization and naming conventions
+2. File patterns and coding conventions
+3. Test organization and coverage patterns
+4. Documentation approach and comprehensiveness
+
+## Technology Stack Detection
+Automatically detect technologies from:
+1. Package and dependency files
+2. Configuration files
+3. Import statements and usage patterns
+4. Build and deployment scripts
+
+## Convention Identification
+Identify established conventions related to:
+1. Code style and formatting
+2. Architectural patterns
+3. Testing approach
+4. Documentation style
+
+## Preservation vs. Improvement Balance
+Determine the appropriate balance between:
+1. Strictly adhering to existing conventions
+2. Suggesting improvements while respecting conventions
+3. Recommending best practices that may differ from conventions
+
+## Decision Tree for Existing Projects
+
+GIVEN an existing project analysis:
+- IF well-established conventions → recommend modes that respect and enhance existing patterns
+- IF inconsistent conventions → recommend modes that help standardize approaches
+- IF minimal conventions → recommend modes that establish best practices
+
+GIVEN user preferences for preservation vs. improvement:
+- IF preference to preserve → generate customInstructions that emphasize convention adherence
+- IF balance requested → suggest improvements within existing architectural boundaries
+- IF open to changes → recommend best practices even if they differ from current approach

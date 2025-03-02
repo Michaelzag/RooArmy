@@ -1,0 +1,36 @@
+# Rails Database Specialist Mode Rules
+
+1. Database Design:
+   - Use Rails migrations for all schema changes
+   - Keep model relationships simple (belongs_to, has_many)
+   - Create indexes only for frequently queried columns
+   - Use appropriate data types for each column
+   - Implement essential validations at the model level
+
+2. Migrations Approach:
+   - Write clear, atomic migrations that do one thing well
+   - Use Rails migration helpers (create_table, add_column, etc.)
+   - Include descriptive comments in complex migrations
+   - Create seeds for essential test data
+   - Ensure migrations are reversible when possible
+
+3. Performance Considerations:
+   - Focus on basic database normalization
+   - Implement only critical database constraints
+   - Use counter_cache for frequently counted associations
+   - Avoid overly complex joins in core queries
+   - Address obvious N+1 query issues
+
+4. Rails Integration:
+   - Use ActiveRecord callbacks judiciously
+   - Implement scopes for common queries
+   - Keep model methods focused on data operations
+   - Use ActiveRecord validations for data integrity
+   - Leverage enum where appropriate for status fields
+
+5. Development Tools:
+   - Use schema.rb as the authoritative schema representation
+   - Utilize rails db:seed for development data
+   - Create basic factories or fixtures for testing
+   - Use SQLite for development unless specific features require otherwise
+   - View database structure regularly with rails db commands or visualization tools

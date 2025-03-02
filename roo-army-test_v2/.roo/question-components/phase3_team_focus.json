@@ -1,0 +1,96 @@
+{
+  "team": {
+    "title": "Team Roles & Development Focus",
+    "description": "Understand team composition and specific development needs",
+    "transition_message": "Let's discuss your team's structure and specific development focuses.",
+    "condition": "team_size != 'solo'",
+    "questions": [
+      {
+        "id": "experience_level",
+        "question": "What is the overall experience level with this technology stack?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "beginner", "label": "Beginner (learning the basics)"},
+          {"value": "intermediate", "label": "Intermediate (some experience)"},
+          {"value": "advanced", "label": "Advanced (experienced developers)"},
+          {"value": "mixed", "label": "Mixed (various experience levels)"}
+        ],
+        "impacts": {
+          "beginner": {
+            "add_modes": ["learn"],
+            "remove_modes": ["architect", "security", "perf", "cloud"]
+          },
+          "intermediate": {
+            "add_modes": [],
+            "remove_modes": []
+          },
+          "advanced": {
+            "add_modes": ["perf", "security"],
+            "remove_modes": ["learn"]
+          },
+          "mixed": {
+            "add_modes": ["learn"],
+            "remove_modes": []
+          }
+        }
+      },
+      {
+        "id": "team_roles",
+        "question": "Which specific roles exist on your team? (select all that apply)",
+        "type": "multiple_select",
+        "options": [
+          {"value": "frontend", "label": "Frontend Developers"},
+          {"value": "backend", "label": "Backend Developers"},
+          {"value": "fullstack", "label": "Full-stack Developers"},
+          {"value": "designer", "label": "UI/UX Designers"},
+          {"value": "devops", "label": "DevOps Engineers"},
+          {"value": "qa", "label": "QA/Testing Specialists"},
+          {"value": "pm", "label": "Project Managers"},
+          {"value": "data", "label": "Data Scientists/Engineers"}
+        ],
+        "mode_impacts": {
+          "frontend": ["frontend+1"],
+          "backend": ["backend+1"],
+          "fullstack": ["engineer+1"],
+          "designer": ["ui+2"],
+          "devops": ["devops+2"],
+          "qa": ["qa+2"],
+          "pm": ["architect+1"],
+          "data": ["dba+2", "analyst+2"]
+        }
+      }
+    ]
+  },
+  "solo": {
+    "title": "Development Focus",
+    "description": "Understand your development priorities",
+    "transition_message": "Let's discuss your specific development focuses.",
+    "condition": "team_size == 'solo'",
+    "questions": [
+      {
+        "id": "experience_level",
+        "question": "What is your experience level with this technology stack?",
+        "type": "multiple_choice",
+        "options": [
+          {"value": "beginner", "label": "Beginner (learning the basics)"},
+          {"value": "intermediate", "label": "Intermediate (some experience)"},
+          {"value": "advanced", "label": "Advanced (experienced developer)"}
+        ],
+        "impacts": {
+          "beginner": {
+            "add_modes": ["learn"],
+            "remove_modes": ["architect", "security", "perf", "cloud"]
+          },
+          "intermediate": {
+            "add_modes": [],
+            "remove_modes": []
+          },
+          "advanced": {
+            "add_modes": ["perf", "security"],
+            "remove_modes": ["learn"]
+          }
+        }
+      }
+    ]
+  }
+}

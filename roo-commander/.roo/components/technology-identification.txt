@@ -82,7 +82,7 @@ Classify the project using these categories:
 GIVEN a user's response about their technology stack:
 - IF exact match exists in hierarchical structure → use that version-specific reference
 - IF major version match but minor/patch different → use closest version
-- IF no version match → use ask_perplexity to create new reference documentation
+- IF no version match → offer to create new reference documentation
 - IF no framework match → fallback to language-level mode
 
 GIVEN a project with multiple technologies:

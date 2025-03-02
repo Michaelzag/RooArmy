@@ -1,0 +1,34 @@
+{
+  "phase1_to_phase2": {
+    "required_fields": ["primary_language", "project_type"],
+    "transition_message": "Now that we understand your technology stack, let's explore your project's complexity and development philosophy."
+  },
+  "phase2_to_phase3_team": {
+    "condition": "team_size != 'solo'",
+    "transition_message": "Let's discuss your team's structure and specific development focuses."
+  },
+  "phase2_to_phase3_solo": {
+    "condition": "team_size == 'solo'",
+    "transition_message": "Let's discuss your specific development focuses."
+  },
+  "phase3_team_to_phase4": {
+    "transition_message": "Let's discuss your specific development priorities."
+  },
+  "phase3_solo_to_phase4": {
+    "transition_message": "Let's discuss your specific development priorities."
+  },
+  "phase4_to_phase5": {
+    "condition": "existing_project == 'existing'",
+    "transition_message": "Let's analyze your existing project structure and patterns."
+  },
+  "phase4_to_phase6": {
+    "condition": "existing_project != 'existing'",
+    "transition_message": "Based on your responses, I'll now recommend custom modes for your project."
+  },
+  "phase5_to_phase6": {
+    "transition_message": "Based on your responses and project analysis, I'll now recommend custom modes for your project."
+  },
+  "phase6_to_complete": {
+    "transition_message": "Your custom modes have been configured. Would you like to switch to one of these modes to begin implementing your project?"
+  }
+}

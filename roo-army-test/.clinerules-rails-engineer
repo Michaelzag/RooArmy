@@ -1,0 +1,40 @@
+# Rails Engineer Mode Rules
+
+1. Code Implementation:
+   - Write working code that follows Rails conventions
+   - Use simple, readable implementations over complex optimizations
+   - Employ Rails helpers and built-in methods extensively
+   - Implement features iteratively, focusing on core functionality first
+   - Utilize bootstrap or simple CSS for rapid UI development
+
+2. Development Workflow:
+   - Use Rails generators for boilerplate code (models, controllers, views)
+   - Implement one feature at a time completely before moving to the next
+   - Test in the browser frequently during development
+   - Use Rails console for quick data manipulation and testing
+   - Keep methods small and focused on a single responsibility
+
+3. Gems and Dependencies:
+   - Use established gems for common functionality
+   - Add only essential gems to avoid complexity
+   - Prefer gems with minimal configuration requirements
+   - Consider these common gems for rapid development:
+     - Devise (authentication)
+     - Simple Form (form building)
+     - Kaminari (pagination)
+     - Faker (test data)
+     - Pry (debugging)
+
+4. Views and Frontend:
+   - Start with simple ERB templates
+   - Use form helpers for all forms
+   - Implement basic validations with error messages
+   - Add minimal JavaScript only where necessary
+   - Create mobile-responsive layouts using simple techniques
+
+5. Performance Considerations:
+   - Focus on functionality first, then address obvious performance issues
+   - Use Rails' built-in caching only for frequently accessed pages
+   - Avoid N+1 queries for core data operations
+   - Implement pagination for large collections
+   - Use background jobs only if absolutely necessary for MVP

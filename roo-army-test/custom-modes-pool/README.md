@@ -1,119 +1,76 @@
-# RooArmy Custom Modes Pool
+# RooCommander Custom Modes Pool
 
-This directory contains a comprehensive collection of custom modes for Roo AI Assistant, organized by functional categories. Each file contains a group of related modes that can be combined to create tailored mode configurations for specific projects.
+This directory contains the configuration for the RooCommander's custom modes system. The custom-modes-pool serves as a repository of available modes and reference documentation for technologies.
 
 ## Directory Structure
 
-- `00-index.json` - Metadata about the collection and category information
-- `01-configuration.json` - Configuration and assessment modes
-- `02-planning-design.json` - Architecture and design-focused modes
-- `03-implementation.json` - Development and implementation modes
-- `04-quality-security.json` - Testing, QA, and security modes
-- `05-operations.json` - Deployment and infrastructure modes
-- `06-documentation.json` - Documentation and support modes
-- `generate-roomodes.js` - Utility script to generate .roomodes files
+- **00-index.json** - Master index of all available modes by category
+- **reference-docs/** - Hierarchical structure of reference documentation for technologies
+  - **languages/** - Programming language reference documentation
+  - **frameworks/** - Cross-cutting framework documentation
+  - **databases/** - Database technology documentation
+  - **cloud/** - Cloud platform documentation
+  - **tools/** - Development tool documentation
 
-## Custom Modes Generator Script
+## Dynamic Technology References
 
-The `generate-roomodes.js` script helps you create `.roomodes` files from the mode pool. It can be used both by the RooCommander and manually to generate configurations.
+The RooCommander 3.5 system uses the reference documentation in this directory to dynamically generate options for technology selection questions. This provides several benefits:
 
-### Prerequisites
+1. **Technology options are dynamically loaded** from the reference documentation rather than being hard-coded
+2. **New technologies can be added** by simply adding reference documentation files
+3. **Version-specific modes** can be generated based on the available reference documentation
 
-- Node.js installed on your system
+### Reference Documentation Structure
 
-### Basic Usage
-
-**List all available modes:**
-```bash
-node generate-roomodes.js list
+The reference documentation follows a hierarchical organization:
+```
+reference-docs/
+├── cloud/              # Cloud technologies
+│   ├── containers/     # Docker, Kubernetes, etc.
+│   ├── providers/      # AWS, Azure, GCP
+│   ├── serverless/     # Lambda, Azure Functions
+│   └── services/       # Various cloud services
+├── databases/          # Database technologies
+│   ├── document/       # MongoDB, etc.
+│   ├── graph/          # Neo4j, etc.
+│   ├── key-value/      # Redis, etc.
+│   ├── relational/     # MySQL, PostgreSQL, etc.
+│   └── vector/         # Qdrant, etc.
+├── frameworks/         # Cross-cutting frameworks
+│   ├── cross-platform/ # Multi-platform frameworks
+│   └── web/            # Web-specific frameworks
+├── languages/          # Programming languages
+│   ├── javascript/     # JavaScript & related
+│   │   ├── backend/    # Node.js, Express, etc.
+│   │   └── frontend/   # React, Angular, Vue, etc.
+│   ├── python/         # Python & related frameworks
+│   ├── java/           # Java & related frameworks
+│   ├── [other languages]
+└── tools/              # Development tools
+    ├── build/          # Build systems
+    ├── ci-cd/          # CI/CD tools
+    ├── data-pipeline/  # Data processing tools
+    └── testing/        # Testing frameworks
 ```
 
-**Generate a .roomodes file with specific modes:**
-```bash
-node generate-roomodes.js generate commander architect engineer qa
-```
+### Dynamic Selection Process
 
-**Get mode recommendations based on project type and team size:**
-```bash
-node generate-roomodes.js recommend web small
-```
+When the user selects a primary language, the system:
+1. Scans the appropriate reference documentation directory
+2. Generates framework options based on available documentation
+3. When a framework is selected, generates version options from version-specific files
+4. Dynamically generates and customizes modes based on these selections
 
-### Advanced Usage
+### Fallback Options
 
-The script can also be used programmatically in other Node.js scripts:
+If dynamic scanning cannot find appropriate documentation, the system falls back to a predefined set of options for each technology category. This ensures the system works correctly even when new reference documentation hasn't been created yet.
 
-```javascript
-const { generateRoomodesFile, generateRecommendation } = require('./generate-roomodes.js');
+## Extending Technology Support
 
-// Generate recommendations
-const projectInfo = {
-  projectType: 'web',
-  teamSize: 'small',
-  experienceLevel: 'intermediate',
-  specialNeeds: ['security', 'documentation']
-};
-const recommended = generateRecommendation(projectInfo);
+To add support for a new technology or version:
 
-// Generate .roomodes file with recommended modes
-generateRoomodesFile(recommended);
-```
+1. Create appropriate reference documentation in the reference-docs/ directory
+2. Follow the schema defined in reference-docs/00-schema.md
+3. The system will automatically detect and use the new documentation
 
-### Customizing the Output
-
-By default, the script creates the `.roomodes` file in the current directory. You can specify a different output path:
-
-```bash
-node generate-roomodes.js generate architect engineer qa --output ./my-project/.roomodes
-```
-
-Or programmatically:
-
-```javascript
-generateRoomodesFile(['architect', 'engineer', 'qa'], './my-project/.roomodes');
-```
-
-## Integration with RooCommander
-
-The RooCommander mode uses this script to generate recommended mode configurations based on assessment responses. When the RooCommander analyzes project requirements, it:
-
-1. Collects information about the project type, team size, and special needs
-2. Uses the `generateRecommendation` function to determine appropriate modes
-3. Calls `generateRoomodesFile` to create the configuration
-4. Explains the recommended modes to the user
-
-## Extending the Mode Pool
-
-To add new modes to the pool:
-
-1. Identify the appropriate category file
-2. Add your new mode definition following the existing format
-3. Update the `00-index.json` file to include the new mode in the category listing
-
-
-```First Query - Version and Overview:
-
-What are the most recent version details for [Technology] as of February 2025? 
-Please provide:
-- Latest version number and release date
-- Brief description of the technology's purpose and positioning
-- Major features introduced in this version
-Second Query - Detailed Implementation Information:
-
-For [Technology] version [X.Y.Z], please provide detailed information about:
-- Key features specific to this version
-- Best practices recommended for developers
-- Related packages and dependencies with version numbers
-- File types commonly used with this technology
-- Skills required for developers to work effectively with it
-- Major differences from the previous version
-```
-
-## Example Workflow
-
-A typical workflow for using this system:
-
-1. Use the RooCommander to assess project needs and generate an initial configuration
-2. As project needs evolve, manually add or remove specific modes
-3. Switch between roles as different development tasks arise
-
-You can also use the script to create different configurations for different phases of your project.
+For version-specific technologies, follow the naming convention: `{technology}-v{major_version}.md` (e.g., `react-v18.md`)

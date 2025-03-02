@@ -1,0 +1,86 @@
+{
+  "title": "Mode Customization",
+  "description": "Customize selected modes for your project",
+  "transition_message": "Based on your responses, I've recommended these custom modes for your project. Let's review and customize them.",
+  "questions": [
+    {
+      "id": "customize_modes",
+      "question": "Would you like to customize any of the recommended modes?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "yes", "label": "Yes, I'd like to customize the modes"},
+        {"value": "no", "label": "No, the recommended modes look good"}
+      ],
+      "follow_ups": {
+        "yes": ["modes_to_customize"],
+        "no": []
+      }
+    },
+    {
+      "id": "modes_to_customize",
+      "question": "Which modes would you like to customize?",
+      "type": "dynamic",
+      "dynamic_value": "selected_modes",
+      "multiple": true,
+      "follow_ups": ["customization_type"]
+    },
+    {
+      "id": "customization_type",
+      "question": "What aspects would you like to customize for {current_mode}?",
+      "type": "multiple_select",
+      "options": [
+        {"value": "role", "label": "Role definition"},
+        {"value": "tools", "label": "Tool permissions"},
+        {"value": "instructions", "label": "Custom instructions"}
+      ],
+      "follow_ups": {
+        "role": ["role_customization"],
+        "tools": ["tools_customization"],
+        "instructions": ["instructions_customization"]
+      }
+    },
+    {
+      "id": "role_customization",
+      "question": "How would you like to modify the role definition for {current_mode}?",
+      "type": "text",
+      "multiline": true,
+      "dynamic_value": "current_role_definition",
+      "placeholder": "Edit the role definition..."
+    },
+    {
+      "id": "tools_customization",
+      "question": "Which tool groups should {current_mode} have access to?",
+      "type": "multiple_select",
+      "options": [
+        {"value": "read", "label": "Read files"},
+        {"value": "edit", "label": "Edit files"},
+        {"value": "command", "label": "Execute commands"},
+        {"value": "browser", "label": "Browser actions"},
+        {"value": "mcp", "label": "MCP tools"}
+      ],
+      "dynamic_value": "current_tools"
+    },
+    {
+      "id": "instructions_customization",
+      "question": "How would you like to modify the custom instructions for {current_mode}?",
+      "type": "text",
+      "multiline": true,
+      "dynamic_value": "current_instructions",
+      "placeholder": "Edit the custom instructions..."
+    },
+    {
+      "id": "review_customization",
+      "question": "Here's the updated configuration for {current_mode}. Does this look correct?",
+      "type": "multiple_choice",
+      "dynamic_value": "customized_config",
+      "options": [
+        {"value": "yes", "label": "Yes, this looks good"},
+        {"value": "no", "label": "No, I'd like to make more changes"}
+      ],
+      "follow_ups": {
+        "yes": [],
+        "no": ["customization_type"]
+      }
+    }
+  ]
+}

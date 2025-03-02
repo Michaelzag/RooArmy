@@ -1,0 +1,173 @@
+{
+  "title": "Project Complexity & Philosophy",
+  "description": "Understand your project's complexity and development philosophy",
+  "transition_message": "Now that we understand your technology stack, let's explore your project's complexity and development philosophy.",
+  "questions": [
+    {
+      "id": "project_pattern_familiarity",
+      "question": "Which of these best describes your project?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "familiar", "label": "Following established patterns similar to projects I've built before"},
+        {"value": "mixed", "label": "Using known patterns but with some new/unique elements"},
+        {"value": "new", "label": "Exploring new territory with significant unknowns"}
+      ],
+      "complexity_mapping": {
+        "familiar": "simple",
+        "mixed": "complicated",
+        "new": "complex"
+      }
+    },
+    {
+      "id": "solution_clarity",
+      "question": "How clear is the solution path for this project?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "clear", "label": "Very clear - I know exactly how to build it"},
+        {"value": "mostly_clear", "label": "Mostly clear - I'll need to figure out some parts"},
+        {"value": "evolving", "label": "Evolving - The solution will emerge as we progress"}
+      ],
+      "complexity_mapping": {
+        "clear": "simple",
+        "mostly_clear": "complicated",
+        "evolving": "complex"
+      }
+    },
+    {
+      "id": "iteration_expectation",
+      "question": "How much iteration do you expect during development?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "minimal", "label": "Minimal - I expect to get it right the first time"},
+        {"value": "moderate", "label": "Moderate - Some refinement will be needed"},
+        {"value": "significant", "label": "Significant - Continuous adaptation will be necessary"}
+      ],
+      "complexity_mapping": {
+        "minimal": "simple",
+        "moderate": "complicated",
+        "significant": "complex"
+      }
+    },
+    {
+      "id": "project_complexity",
+      "type": "derived",
+      "derived_from": ["project_pattern_familiarity", "solution_clarity", "iteration_expectation"],
+      "mapping_logic": "majority_vote",
+      "impacts": {
+        "simple": {
+          "priorities": ["speed", "standardization"],
+          "remove_modes": ["architect", "experimental"],
+          "customInstructions": "Focus on rapid implementation using established patterns. Favor straightforward approaches over clever solutions. Include essential tests focused on critical paths."
+        },
+        "complicated": {
+          "priorities": ["expertise", "best_practices"],
+          "add_modes": ["architect"],
+          "customInstructions": "Apply proven design patterns appropriate for this domain. Ensure comprehensive testing of edge cases. Document architectural decisions and their rationales."
+        },
+        "complex": {
+          "priorities": ["experimentation", "feedback_loops"],
+          "add_modes": ["experimental", "architect"],
+          "customInstructions": "Implement iterative solutions that can evolve. Start with minimal viable implementations. Build in feedback mechanisms and observability. Document assumptions and create easy paths for revision."
+        }
+      }
+    },
+    {
+      "id": "development_philosophy",
+      "question": "Which development approaches resonate with your team?",
+      "description": "Select all that apply to your preferred development style.",
+      "type": "multiple_select",
+      "options": [
+        {"value": "tdd", "label": "Test-Driven Development - Tests first, then code"},
+        {"value": "bdd", "label": "Behavior-Driven Development - Define behavior scenarios first"},
+        {"value": "ddd", "label": "Domain-Driven Design - Business domains guide architecture"},
+        {"value": "doc_first", "label": "Documentation-First - Clear specs before implementation"},
+        {"value": "component", "label": "Component-Based - Building from reusable parts"},
+        {"value": "feature", "label": "Feature-Focused - Organizing around user features"},
+        {"value": "none", "label": "No specific philosophy - Pragmatic approach"}
+      ],
+      "mode_impacts": {
+        "tdd": ["qa+3", "engineer+1"],
+        "bdd": ["qa+2", "architect+1"],
+        "ddd": ["architect+3", "dba+1"],
+        "doc_first": ["writer+3", "architect+1"],
+        "component": ["frontend+2", "engineer+1"],
+        "feature": ["engineer+2", "architect+1"]
+      }
+    },
+    {
+      "id": "quality_priority",
+      "question": "On a scale from 1-5, where would you position your project priorities?",
+      "type": "scale",
+      "label": "Development Speed vs. Code Quality",
+      "min_label": "1: Heavily favor speed (get it working now)",
+      "max_label": "5: Heavily favor quality (comprehensive testing)",
+      "default": 3,
+      "impacts": {
+        "1": {
+          "add_modes": ["engineer"],
+          "remove_modes": ["qa", "security", "writer"],
+          "customInstructions": "Prioritize working solutions over perfect code. Focus on core functionality first. Use simple, direct approaches for non-critical paths."
+        },
+        "2": {
+          "add_modes": ["engineer"],
+          "remove_modes": ["qa", "writer"]
+        },
+        "3": {
+          "balanced": true
+        },
+        "4": {
+          "add_modes": ["qa", "writer"],
+          "customInstructions": "Prioritize code quality and maintainability. Implement comprehensive test coverage for critical features."
+        },
+        "5": {
+          "add_modes": ["qa", "security", "writer"],
+          "remove_modes": ["experimental"],
+          "customInstructions": "Prioritize maintainable, well-tested code. Implement comprehensive test coverage. Follow established patterns and thoroughly test all code paths."
+        }
+      }
+    },
+    {
+      "id": "team_size",
+      "question": "How many people are on your development team?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "solo", "label": "Just me"},
+        {"value": "small", "label": "2-5 people"},
+        {"value": "medium", "label": "6-15 people"},
+        {"value": "large", "label": "More than 15 people"}
+      ],
+      "impacts": {
+        "solo": {
+          "max_modes": 5,
+          "skip_questions": ["team_roles"]
+        },
+        "small": {
+          "max_modes": 7
+        },
+        "medium": {
+          "max_modes": 10
+        },
+        "large": {
+          "max_modes": 15
+        }
+      }
+    },
+    {
+      "id": "handoff_interest",
+      "question": "For projects that span multiple sessions or team members, our handoff system helps maintain context and document progress. Would this be useful for your project?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "yes", "label": "Yes, the handoff system would be helpful"},
+        {"value": "no", "label": "No, I don't need the handoff system"}
+      ],
+      "impacts": {
+        "yes": {
+          "add_modes": ["handoff-manager", "milestone-manager", "session-restorer"]
+        },
+        "no": {
+          "remove_modes": ["handoff-manager", "milestone-manager", "session-restorer"]
+        }
+      }
+    }
+  ]
+}

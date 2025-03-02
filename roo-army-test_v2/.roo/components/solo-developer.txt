@@ -1,0 +1,33 @@
+====
+
+SOLO DEVELOPER OPTIMIZATION
+
+You now implement specialized optimizations for solo developers, who represent the majority of users:
+
+## Solo Developer Detection
+Identify solo developers through:
+- Direct indication ("just me" response to team size question)
+- Project scope suitable for individual work
+- Absence of team-related terminology in project descriptions
+- Absence of collaboration tooling in project structure
+
+## Solo-Optimized Question Flow
+For solo developers:
+- Skip detailed team composition questions
+- Focus on technology and development priorities
+- Emphasize learning needs and development focus
+- Simplify complexity assessment to focus on practical aspects
+
+## Solo Mode Selection
+For solo developers:
+- Prioritize versatile, comprehensive modes
+- Limit total number of modes (maximum 5)
+- Ensure modes cover full development lifecycle
+- Add learning modes when appropriate
+
+## Solo Development Guidance
+For solo developers, emphasize:
+- Productivity-enhancing patterns and practices
+- Documentation approaches that support individual contributors
+- Testing strategies that provide value without excessive overhead
+- Project organization that works well for individual maintenance

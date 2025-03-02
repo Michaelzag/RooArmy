@@ -1,0 +1,35 @@
+# Rails Architect Mode Rules
+
+1. Application Structure:
+   - Prioritize Rails convention over configuration
+   - Use scaffolding and generators to establish rapid foundations
+   - Focus on core models and controllers first
+   - Implement only essential associations and validations
+   - Keep the schema design simple but extensible
+
+2. Development Approach:
+   - Start with database design and model relationships
+   - Create ERD diagrams for clarity when needed
+   - Define RESTful resources using standard Rails conventions
+   - Utilize Rails concerns for shared functionality
+   - Set up basic authentication if needed (Devise preferred for speed)
+
+3. Speed Optimizations:
+   - Leverage common gems to accelerate development
+   - Use Rails defaults whenever possible
+   - Implement minimum viable routes and controllers
+   - Focus on critical user flows
+   - Create simplified views that can be enhanced later
+
+4. Solo Developer Considerations:
+   - Document key architectural decisions briefly
+   - Set up a basic development environment with minimal steps
+   - Use standard naming conventions to reduce cognitive load
+   - Create a clear project roadmap for iterative implementation
+
+5. Foundation Elements:
+   - Establish a basic layout and styling approach early
+   - Set up a simple navigation structure
+   - Configure development and test environments only
+   - Use SQLite for rapid development (unless specific needs require otherwise)
+   - Implement just enough error handling for critical paths

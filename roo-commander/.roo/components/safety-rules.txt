@@ -28,3 +28,8 @@ You must adhere to these essential safety protocols:
    - Respect project boundaries when analyzing code
    - Don't make assumptions about external dependencies
    - Focus analysis on files explicitly shared or referenced
+
+6. Existing Project Respect
+   - Identify and honor established patterns
+   - Be explicit about suggested changes
+   - Provide rationale for deviations from existing conventions

@@ -1,0 +1,36 @@
+# Rails Tester Mode Rules
+
+1. Testing Philosophy:
+   - Focus on high-impact, minimal testing
+   - Test critical user flows and core business logic
+   - Skip exhaustive test coverage for rapid prototyping
+   - Use Rails built-in testing tools
+   - Apply the 80/20 rule: test the 20% of code that provides 80% of value
+
+2. Test Types Priority:
+   - Model tests: Focus on validations and critical methods
+   - Controller tests: Cover only main actions and edge cases
+   - System tests: Test essential user flows
+   - Skip extensive unit tests for non-critical components
+   - Skip comprehensive integration tests in early development
+
+3. Testing Workflow:
+   - Write tests for critical features after implementation
+   - Use factories or fixtures for test data creation
+   - Run focused test suites rather than the entire suite during development
+   - Implement test database seeding for consistent test environments
+   - Use headless browser tests to speed up system tests
+
+4. Testing Tools:
+   - Minitest (Rails default) for speed and simplicity
+   - Factory Bot for test data creation
+   - Capybara for system tests
+   - SimpleCov for basic coverage metrics
+   - Rails fixtures for simple data scenarios
+
+5. Balanced Approach:
+   - Test complex business logic thoroughly
+   - Test authentication and authorization if implemented
+   - Test form submissions and validations
+   - Skip extensive JavaScript testing in early phases
+   - Skip performance and load testing until needed

@@ -1,0 +1,57 @@
+{
+  "title": "Development Experience",
+  "description": "Understand your experience level and development priorities",
+  "transition_message": "Let's discuss your experience level with this technology stack.",
+  "questions": [
+    {
+      "id": "experience_level",
+      "question": "What is your experience level with this technology stack?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "beginner", "label": "Beginner (learning the basics)"},
+        {"value": "intermediate", "label": "Intermediate (some experience)"},
+        {"value": "advanced", "label": "Advanced (experienced developer)"}
+      ],
+      "impacts": {
+        "beginner": {
+          "add_modes": ["learn"],
+          "remove_modes": ["architect", "security", "perf", "cloud"],
+          "customInstructions": "Include learning-oriented documentation and explanations. Focus on fundamental concepts and patterns. Provide clear, step-by-step guidance."
+        },
+        "intermediate": {
+          "add_modes": [],
+          "remove_modes": [],
+          "customInstructions": "Balance explanations with implementation efficiency. Include references to best practices and patterns when appropriate."
+        },
+        "advanced": {
+          "add_modes": ["perf", "security"],
+          "remove_modes": ["learn"],
+          "customInstructions": "Focus on efficient implementation with minimal explanation of well-known concepts. Include advanced patterns and optimizations when appropriate."
+        }
+      }
+    },
+    {
+      "id": "developer_focus",
+      "question": "Which aspects of development do you handle? (select all that apply)",
+      "type": "multiple_select",
+      "options": [
+        {"value": "frontend", "label": "Frontend Development"},
+        {"value": "backend", "label": "Backend Development"},
+        {"value": "fullstack", "label": "Full-stack Development"},
+        {"value": "design", "label": "UI/UX Design"},
+        {"value": "devops", "label": "DevOps & Deployment"},
+        {"value": "testing", "label": "Testing & Quality Assurance"},
+        {"value": "data", "label": "Data Engineering/Analytics"}
+      ],
+      "mode_impacts": {
+        "frontend": ["frontend+2"],
+        "backend": ["backend+2"],
+        "fullstack": ["engineer+2"],
+        "design": ["ui+2"],
+        "devops": ["devops+2"],
+        "testing": ["qa+2"],
+        "data": ["dba+2", "analyst+2"]
+      }
+    }
+  ]
+}

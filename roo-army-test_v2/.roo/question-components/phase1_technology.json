@@ -1,0 +1,152 @@
+{
+  "title": "Primary Technology Identification",
+  "description": "Identify the foundational technology stack",
+  "questions": [
+    {
+      "id": "existing_project",
+      "question": "Are you configuring for an existing project or a new project?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "existing", "label": "Existing project (already has code)"},
+        {"value": "new", "label": "New project (starting from scratch)"}
+      ],
+      "follow_ups": {
+        "existing": ["project_scan_permission"],
+        "new": ["primary_language"]
+      }
+    },
+    {
+      "id": "project_scan_permission",
+      "question": "Would you like me to scan your project to detect technologies and patterns?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "yes", "label": "Yes, analyze my project structure and files"},
+        {"value": "no", "label": "No, I'll provide information manually"}
+      ],
+      "follow_ups": {
+        "yes": ["project_scan_path"],
+        "no": ["primary_language"]
+      }
+    },
+    {
+      "id": "project_scan_path",
+      "question": "What's the path to your project's root directory?",
+      "type": "text",
+      "placeholder": "e.g., . (current directory) or ./my-project",
+      "follow_ups": ["scan_confirmation"]
+    },
+    {
+      "id": "scan_confirmation",
+      "question": "I've analyzed your project and detected these technologies. Is this correct?",
+      "type": "dynamic",
+      "dynamic_value": "scan_results",
+      "options": [
+        {"value": "yes", "label": "Yes, that's correct"},
+        {"value": "partial", "label": "Partially correct (I'll provide additional details)"},
+        {"value": "no", "label": "No, I need to specify manually"}
+      ],
+      "follow_ups": {
+        "yes": ["project_type"],
+        "partial": ["primary_language"],
+        "no": ["primary_language"]
+      }
+    },
+    {
+      "id": "primary_language",
+      "question": "What is the primary programming language for your project?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "javascript", "label": "JavaScript/TypeScript"},
+        {"value": "python", "label": "Python"},
+        {"value": "java", "label": "Java"},
+        {"value": "csharp", "label": "C#"},
+        {"value": "go", "label": "Go"},
+        {"value": "ruby", "label": "Ruby"},
+        {"value": "php", "label": "PHP"},
+        {"value": "rust", "label": "Rust"},
+        {"value": "other", "label": "Other"}
+      ],
+      "follow_ups": {
+        "javascript": ["project_type", "javascript_framework"],
+        "python": ["project_type", "python_framework"],
+        "java": ["project_type", "java_framework"],
+        "csharp": ["project_type", "dotnet_framework"],
+        "go": ["project_type", "go_framework"],
+        "ruby": ["project_type", "ruby_framework"],
+        "php": ["project_type", "php_framework"],
+        "rust": ["project_type", "rust_framework"],
+        "other": ["project_type", "language_details"]
+      }
+    },
+    {
+      "id": "project_type",
+      "question": "What type of project are you working on?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "web", "label": "Web Application"},
+        {"value": "mobile", "label": "Mobile Application"},
+        {"value": "service", "label": "Backend Service"},
+        {"value": "cli", "label": "Command Line Tool"},
+        {"value": "library", "label": "Library/Framework"},
+        {"value": "enterprise", "label": "Enterprise System"},
+        {"value": "data", "label": "Data Processing/Analysis"},
+        {"value": "ai", "label": "AI/ML Project"}
+      ]
+    },
+    {
+      "id": "javascript_framework",
+      "question": "Which JavaScript framework or library are you primarily using?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "react", "label": "React"},
+        {"value": "angular", "label": "Angular"},
+        {"value": "vue", "label": "Vue.js"},
+        {"value": "next", "label": "Next.js"},
+        {"value": "svelte", "label": "Svelte"},
+        {"value": "express", "label": "Express.js"},
+        {"value": "nodejs", "label": "Node.js (without framework)"},
+        {"value": "vanilla", "label": "Vanilla JS (no framework)"},
+        {"value": "other", "label": "Other"}
+      ],
+      "follow_ups": {
+        "react": ["react_version"],
+        "angular": ["angular_version"],
+        "vue": ["vue_version"],
+        "next": ["next_version"],
+        "svelte": ["svelte_version"],
+        "express": ["express_version"],
+        "other": ["framework_details"]
+      },
+      "reference_doc_base": "languages/javascript/frontend/"
+    },
+    {
+      "id": "react_version",
+      "question": "Which React version are you using?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "19", "label": "React 19.x (Latest)"},
+        {"value": "18", "label": "React 18.x"},
+        {"value": "17", "label": "React 17.x"},
+        {"value": "other", "label": "Other/Custom"}
+      ],
+      "reference_doc_path": "languages/javascript/frontend/react/react-v{value}.md"
+    },
+    {
+      "id": "database",
+      "question": "Which database technology are you using?",
+      "type": "multiple_choice",
+      "options": [
+        {"value": "postgresql", "label": "PostgreSQL"},
+        {"value": "mysql", "label": "MySQL"},
+        {"value": "mongodb", "label": "MongoDB"},
+        {"value": "sqlite", "label": "SQLite"},
+        {"value": "redis", "label": "Redis"},
+        {"value": "neo4j", "label": "Neo4j"},
+        {"value": "qdrant", "label": "Qdrant"},
+        {"value": "none", "label": "No database"},
+        {"value": "other", "label": "Other"}
+      ],
+      "reference_doc_base": "databases/"
+    }
+  ]
+}
