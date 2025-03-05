@@ -1,5 +1,5 @@
 # RooArmy: Advanced Custom Mode Configuration System
-#This isn't really a fully functional project yet. It's a concept of an idea, and i've done some light testing. Use it at your own risk. 
+# This isn't really a fully functional project yet. It's a concept of an idea, and i've done some light testing. Use it at your own risk. 
 
 RooArmy is a sophisticated system for creating and managing professional custom modes in Roo AI Assistant. It offers an intelligent, assessment-driven approach to configuring Roo for specific development environments, teams, and projects.
 
